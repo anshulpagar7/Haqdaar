@@ -241,7 +241,31 @@ Print them, or open them on a second screen and photograph that.
 
 ## Interface
 
-Two layouts, switchable from the header at any time — the toggle forces the
+### The landing is a scroll story
+
+`src/components/ScrollStory.tsx` + `scenes.tsx`. A sticky stage holds four
+full-bleed scenes — a farm with a tractor driving through the crops, a school
+with a flag and children walking in, a construction site with a swinging crane
+and a spinning mixer, and a village at sunset with elders on a bench. The acts
+scroll over the stage and an IntersectionObserver cross-fades the scene and the
+colour wash behind them. Apply now sits in the header and again on a sticky bar
+at the foot of every act.
+
+Motion is layered:
+
+- **Continuous** — CSS keyframes on the scene itself (tractor, crane, flag, leaves).
+- **Scroll-driven** — the progress rail uses native
+  `animation-timeline: scroll(root block)`, behind an `@supports` guard.
+- **Reveals** — native `animation-timeline: view()` where the browser has it
+  (Chrome/Edge 115+), with the same IntersectionObserver adding an `.in` class as
+  the baseline everywhere else, so Firefox and Safari behave identically.
+  See [MDN, CSS scroll-driven animations](https://developer.mozilla.org/en-US/docs/Web/CSS/Guides/Scroll-driven_animations).
+
+Every keyframe is disabled by the global `prefers-reduced-motion` rule.
+
+### Two layouts
+
+Switchable from the header at any time — the toggle forces the
 layout regardless of screen size, so you can show the phone experience on a
 projector or the cockpit on a laptop.
 
@@ -272,3 +296,79 @@ Built against the *ui-ux-pro-max* rule set:
 - visible labels on every control; language and layout switches are real
   `aria-pressed` toggle groups
 - base 16 px, line-height 1.5, semantic colour tokens only — no raw hex in components
+
+---
+
+## Architecture — this is a full-stack application
+
+The repo is TypeScript end to end, but that is the language, not the shape. There
+is a real server, a real relational database and a real API behind the UI.
+
+```
+┌─ CLIENT ─────────────────────────────────────────────────────┐
+│  React 18 + Vite PWA · four-page flow                        │
+│  landing → documents → questions → results                   │
+│  SchemeField (3D canvas) · Web Speech in/out · pdf-lib       │
+└───────────────────────────┬──────────────────────────────────┘
+                            │ REST / JSON
+┌───────────────────────────▼──────────────────────────────────┐
+│  SERVER · Node + Express                                     │
+│    routes/schemes       catalogue + attributes + personas    │
+│    routes/applications  save & retrieve by reference code    │
+│    routes/admin         upsert / verify / retire  (key-gated)│
+│    routes/stats         anonymous aggregates                 │
+│    extract · asr        Gemini vision · Groq Whisper         │
+│  zod validation · rate limiting · request log · audit trail  │
+└───────────────────────────┬──────────────────────────────────┘
+┌───────────────────────────▼──────────────────────────────────┐
+│  DATABASE · SQLite (better-sqlite3, WAL)                     │
+│    scheme · attribute · application · event · audit          │
+│    schema.sql migrations · seed from data/*.json             │
+└──────────────────────────────────────────────────────────────┘
+        ▲ the eligibility ENGINE sits beside all of this:
+          pure TypeScript, no network, no DB, no model. 13 tests.
+```
+
+### API
+
+| Method | Path | What it does |
+|---|---|---|
+| GET | `/api/health` | status, mock flags, scheme count |
+| GET | `/api/data` | catalogue + attributes in one bootstrap call |
+| GET | `/api/schemes` · `/api/schemes/:id` | scheme catalogue from the DB |
+| GET | `/api/attributes` | the attribute registry |
+| GET | `/api/personas` | the four specimen test documents |
+| POST | `/api/extract` | document image → typed fields + confidence |
+| POST | `/api/asr` | audio → Indic transcript |
+| POST | `/api/applications` | save a result, returns `HQ-XXXXXX` |
+| GET | `/api/applications/:ref` | retrieve a saved result |
+| GET | `/api/stats` | anonymous aggregates |
+| POST | `/api/admin/schemes` | add or replace a scheme, no redeploy |
+| POST | `/api/admin/schemes/:id/verify` | mark clause_text checked |
+| DELETE | `/api/admin/schemes/:id` | retire a scheme |
+| GET | `/api/admin/audit` | last 100 admin actions |
+
+Admin routes require `x-admin-key` matching `ADMIN_KEY` in `.env`. Without that
+variable set they return 503 — they are off by default.
+
+```bash
+npm run db:seed     # load data/*.json into SQLite
+npm run db:reset    # wipe and reseed
+```
+
+### What is stored, and what is not
+
+`application` holds a saved result under a random reference code, expires after
+30 days, and is swept hourly. Any key matching `aadhaar|account|uid|card_no|mobile|phone`
+is stripped server-side before the row is written — those values never reach us
+anyway, because the client masks them at extraction. `event` holds counts only:
+how many questions, how many matched, which scheme ids. There is no user table,
+no login and no tracking.
+
+### Test documents
+
+`data/personas.json` plus `public/personas/` ship four synthetic specimens — a
+ration card, an income certificate, an e-Shram card and an Antyodaya card, each
+with an illustrated portrait. Every one is stamped SPECIMEN and every artwork in
+this repo was drawn for it. Nothing is scraped, and no real person's document or
+photograph is used anywhere.
