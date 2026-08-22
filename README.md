@@ -236,3 +236,39 @@ Google's free tier may use submitted content to improve their products, and real
 ration cards are identity documents belonging to real people.
 
 Print them, or open them on a second screen and photograph that.
+
+---
+
+## Interface
+
+Two layouts, switchable from the header at any time — the toggle forces the
+layout regardless of screen size, so you can show the phone experience on a
+projector or the cockpit on a laptop.
+
+**Mobile** — the citizen's flow: capture, one question at a time, result.
+
+**Desktop cockpit** — three columns for demoing and for service-centre operators:
+extracted profile on the left, the eligibility field + counter + current question
+in the centre, and the live confirmed/still-open scheme list on the right, updating
+on every answer.
+
+**The eligibility field** (`src/components/SchemeField.tsx`) renders every scheme
+as a point in perspective 3D on a plain 2D canvas — no WebGL, no 3D library.
+Points pull to the centre and burn gold as they are confirmed, and fall away and
+dim as they are ruled out. It is the solver made visible, and it costs ~26 KB
+instead of 600 KB of dependency.
+
+### Design rules this UI follows
+
+Built against the *ui-ux-pro-max* rule set:
+
+- every text token is ≥ 4.5:1 on its surface; focus rings are never removed
+- 44×44 px minimum touch targets, 8 px+ apart
+- SVG icons throughout — no emoji used as an icon
+- transitions are 150–300 ms and convey spatial continuity
+- the meter animates `transform`, never `width` — no layout thrash
+- `prefers-reduced-motion` disables the aurora, the field's rotation and the
+  counter tween
+- visible labels on every control; language and layout switches are real
+  `aria-pressed` toggle groups
+- base 16 px, line-height 1.5, semantic colour tokens only — no raw hex in components
