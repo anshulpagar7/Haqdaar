@@ -1,13 +1,18 @@
 import { readFileSync } from "node:fs";
 import { db, migrate, audit } from "./index";
+import { dataFile } from "../paths";
 
 /** Load data/*.json into the database. Run with: npm run db:seed
  *  Upserts, so it is safe to run repeatedly after editing the JSON. */
 export function seed(verbose = true) {
+  if (!db) {
+    if (verbose) console.log("no SQLite — nothing to seed; the catalogue is read straight from data/*.json");
+    return;
+  }
   migrate();
-  const schemes = JSON.parse(readFileSync("data/schemes.json", "utf8"));
-  const attributes = JSON.parse(readFileSync("data/attributes.json", "utf8"));
-  const howTo = JSON.parse(readFileSync("data/how-to-apply.json", "utf8"));
+  const schemes = JSON.parse(readFileSync(dataFile("schemes.json"), "utf8"));
+  const attributes = JSON.parse(readFileSync(dataFile("attributes.json"), "utf8"));
+  const howTo = JSON.parse(readFileSync(dataFile("how-to-apply.json"), "utf8"));
 
   const upScheme = db.prepare(`
     INSERT INTO scheme (id,name_en,name_hi,name_mr,authority,level,state,
