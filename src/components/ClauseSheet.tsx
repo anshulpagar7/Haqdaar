@@ -1,3 +1,4 @@
+import Icon from "./Icon";
 import { explain } from "../engine";
 import { T, tr } from "../i18n";
 import type { Lang, Profile, Scheme } from "../engine/types";
@@ -9,57 +10,57 @@ export default function ClauseSheet({ scheme, profile, lang, onClose }: {
   const ok = rows.filter((r) => r.result === true).length;
 
   return (
-    <div className="scrim" onClick={onClose}>
+    <div className="scrim" onClick={onClose} role="dialog" aria-modal="true" aria-label={tr(T.whyQualify, lang)}>
       <div className="sheet" onClick={(e) => e.stopPropagation()}>
         <div className="grab" />
-        <p className="eyebrow">{tr(T.whyQualify, lang).toUpperCase()}</p>
+        <p className="eyebrow">{tr(T.whyQualify, lang)}</p>
         <h2>{scheme.name[lang] ?? scheme.name.en}</h2>
-        <p className="tiny" style={{ marginBottom: 16 }}>{scheme.authority}</p>
+        <p className="tiny" style={{ marginBottom: 18 }}>{scheme.authority}</p>
 
-        <div className="card mari">
-          <p className="eyebrow" style={{ margin: 0 }}>{tr(T.officialClause, lang)}</p>
-          <p style={{ fontSize: 14.5, lineHeight: 1.5, margin: "8px 0 6px" }}>
-            “{scheme.clause_text}”
-          </p>
-          <p className="tiny">
+        <div className="glass tint-mari card">
+          <p className="eyebrow" style={{ margin: "0 0 8px" }}>{tr(T.officialClause, lang)}</p>
+          <p style={{ fontSize: 15, lineHeight: 1.6, margin: "0 0 8px" }}>“{scheme.clause_text}”</p>
+          <p className="tiny" style={{ margin: 0, wordBreak: "break-all" }}>
             {scheme.source_url}
-            {scheme.verified === false && " · not yet verified against the notification"}
+            {scheme.verified === false && ` · ${tr(T.notVerified, lang)}`}
           </p>
         </div>
 
-        <p className="eyebrow" style={{ marginTop: 18 }}>{tr(T.checked, lang)}</p>
+        <p className="eyebrow" style={{ marginTop: 20 }}>{tr(T.checked, lang)}</p>
         {rows.map((r, i) => (
           <div className="field" key={i}>
             <span className="k">
-              <b className="mono" style={{ fontSize: 13 }}>{r.criterion.attr}</b>
+              <b className="mono">{r.criterion.attr}</b>
               <span className="conf">rule {r.rule}</span>
             </span>
-            <span className="v" style={{ fontWeight: 600, color: "var(--muted)", fontSize: 13 }}>
+            <span className="v" style={{ color: "var(--muted)", fontWeight: 600, fontSize: 13 }}>
               {r.yours === null ? "—" : String(r.yours)}
             </span>
-            <span className={"dot " + (r.result === true ? "green" : "mari")}>
-              {r.result === true ? "✓" : "?"}
+            <span className={"pip " + (r.result === true ? "pip-green" : "pip-mari")}>
+              {r.result === true ? <Icon name="check" size={14} stroke={3} /> : "?"}
             </span>
           </div>
         ))}
 
-        <div className="card green" style={{ marginTop: 12 }}>
-          <b style={{ color: "var(--green-d)" }}>{ok} / {rows.length} {tr(T.satisfied, lang)}</b>
-          <p className="tiny" style={{ color: "var(--green-d)", marginTop: 4 }}>
-            {tr(T.notModel, lang)}
-          </p>
+        <div className="glass tint-green card" style={{ marginTop: 12 }}>
+          <b style={{ color: "var(--green)" }}>{ok} / {rows.length} {tr(T.satisfied, lang)}</b>
+          <p className="tiny" style={{ margin: "4px 0 0", color: "var(--green)" }}>{tr(T.notModel, lang)}</p>
         </div>
 
-        <p className="eyebrow" style={{ marginTop: 18 }}>{tr(T.applyAt, lang).toUpperCase()}</p>
-        <p style={{ fontSize: 14, margin: "0 0 4px" }}>{scheme.apply.office ?? "—"}</p>
+        <p className="eyebrow" style={{ marginTop: 20 }}>{tr(T.applyAt, lang)}</p>
+        <p style={{ fontSize: 14.5, margin: "0 0 6px" }}>
+          <Icon name="pin" size={14} /> {scheme.apply.office ?? "—"}
+        </p>
         {scheme.apply.url && (
           <a href={scheme.apply.url} target="_blank" rel="noreferrer"
-             style={{ fontSize: 13.5, color: "var(--mari-d)", wordBreak: "break-all" }}>
+             style={{ fontSize: 13.5, color: "var(--mari)", wordBreak: "break-all" }}>
             {scheme.apply.url}
           </a>
         )}
 
-        <button className="btn primary" style={{ marginTop: 20 }} onClick={onClose}>Close</button>
+        <button className="btn btn-ghost btn-block" style={{ marginTop: 22 }} onClick={onClose}>
+          <Icon name="close" size={16} />{tr(T.close, lang)}
+        </button>
       </div>
     </div>
   );
