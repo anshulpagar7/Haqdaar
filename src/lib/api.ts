@@ -1,0 +1,51 @@
+import type { Registry, Scheme } from "../engine/types";
+
+export interface ExtractResponse {
+  doc_type: string;
+  fields: Record<string, string | number | boolean>;
+  confidence: Record<string, number>;
+  masked_ids?: string[];
+  mock?: boolean;
+}
+
+export async function loadData(): Promise<{ schemes: Scheme[]; attributes: Registry }> {
+  const res = await fetch("/api/data");
+  if (!res.ok) throw new Error("Could not load the scheme database.");
+  return res.json();
+}
+
+export async function health(): Promise<{ mock: { extract: boolean; asr: boolean } }> {
+  const res = await fetch("/api/health");
+  return res.json();
+}
+
+export async function extractDocument(file: File): Promise<ExtractResponse> {
+  const imageBase64 = await toBase64(file);
+  const res = await fetch("/api/extract", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ imageBase64, mimeType: file.type || "image/jpeg" }),
+  });
+  if (!res.ok) throw new Error((await res.json().catch(() => ({}))).error || "Extraction failed.");
+  return res.json();
+}
+
+export async function transcribe(blob: Blob, language: string): Promise<{ text: string }> {
+  const audioBase64 = await toBase64(blob);
+  const res = await fetch("/api/asr", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ audioBase64, mimeType: blob.type, language }),
+  });
+  if (!res.ok) throw new Error("Could not hear that.");
+  return res.json();
+}
+
+function toBase64(f: Blob): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const r = new FileReader();
+    r.onload = () => resolve(String(r.result).split(",")[1] ?? "");
+    r.onerror = reject;
+    r.readAsDataURL(f);
+  });
+}
