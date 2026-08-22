@@ -35,9 +35,44 @@ Neither needs a credit card.
 
 ```bash
 npm test                        # 13 engine tests
+npm run doctor                  # check Node, ports, native module, data files
 npx tsx scripts/benchmark.ts    # prove the selector on the real seed data
-npm run build                   # production bundle
+npm run build                   # typecheck + production bundle
 ```
+
+---
+
+## If something will not start
+
+Run `npm run doctor` first. It checks Node's version, the four data files, the
+native SQLite module, and whether anything is listening on the API port, and it
+prints the exact command that fixes whatever it finds.
+
+**"Could not load the scheme catalogue" / `http proxy error … ECONNREFUSED`**
+
+The web half is up on :5173 but the API half on :8787 is not. `npm run dev` starts
+both with `concurrently`, so if the API crashes at boot its error can scroll past
+in the shared output. Run it alone to see the real message:
+
+```bash
+npm run dev:api
+```
+
+Three common causes:
+
+| Symptom | Cause | Fix |
+|---|---|---|
+| `Cannot find module 'better-sqlite3'` or `bindings file` | the native module did not compile — usually Windows without build tools | `npm rebuild better-sqlite3`. **The app still runs without it** — read-only from `data/*.json`. |
+| `EADDRINUSE` | an older API process is still holding :8787 | Windows: `netstat -ano \| findstr :8787` then `taskkill /PID <pid> /F` · macOS/Linux: `lsof -ti:8787 \| xargs kill` |
+| the API prints nothing at all | it was started from the wrong folder | `cd` into the project root — the one with `package.json` — and re-run |
+
+**The demo does not depend on any of this.** If :8787 is refused, the Vite dev
+server answers `/api/data`, `/api/schemes`, `/api/attributes`, `/api/personas` and
+`/api/health` from `data/*.json` itself, and the console says so once. The landing
+page, the specimen documents, the question flow, the results and the PDF all work
+with the API process dead. Only saving an application and live model calls need it.
+
+`PORT=9000 npm run dev` moves the API port; Vite follows it automatically.
 
 ---
 
@@ -364,6 +399,23 @@ is stripped server-side before the row is written — those values never reach u
 anyway, because the client masks them at extraction. `event` holds counts only:
 how many questions, how many matched, which scheme ids. There is no user table,
 no login and no tracking.
+
+### Every layer degrades instead of failing
+
+A welfare kiosk in a tehsil office does not get to say "the database is down."
+So each dependency has a defined behaviour when it is missing, and none of them
+stops the citizen mid-flow:
+
+| Missing | What happens |
+|---|---|
+| `GEMINI_API_KEY` | extraction returns a seeded profile; a banner says demo mode |
+| `GROQ_API_KEY` | speech falls back to the browser's Web Speech API, then to typing |
+| SQLite (native module fails) | the catalogue is read from `data/*.json`; saves live in memory for the session |
+| the whole API process | the dev server answers the read endpoints from `data/*.json` |
+| JavaScript-heavy motion | `prefers-reduced-motion` and the IntersectionObserver baseline still render every act |
+
+`GET /api/health` reports which of these are active — `storage`, `mock.extract`,
+`mock.asr` — so you never have to guess what the running instance is doing.
 
 ### Test documents
 
