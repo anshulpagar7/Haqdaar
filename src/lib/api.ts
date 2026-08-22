@@ -8,9 +8,22 @@ export interface ExtractResponse {
   mock?: boolean;
 }
 
+/** Turn a failed API call into a sentence that names the actual problem. */
+async function fail(res: Response, fallback: string): Promise<never> {
+  const body = await res.json().catch(() => ({} as any));
+  throw new Error(body.error || `${fallback} (HTTP ${res.status})`);
+}
+
 export async function loadData(): Promise<{ schemes: Scheme[]; attributes: Registry }> {
-  const res = await fetch("/api/data");
-  if (!res.ok) throw new Error("Could not load the scheme database.");
+  let res: Response;
+  try {
+    res = await fetch("/api/data");
+  } catch {
+    throw new Error(
+      "Could not reach the server. Is the dev server still running? Restart it with: npm run dev"
+    );
+  }
+  if (!res.ok) return fail(res, "Could not load the scheme catalogue");
   return res.json();
 }
 
@@ -61,7 +74,7 @@ export interface Persona {
 
 export async function loadPersonas(): Promise<Persona[]> {
   const res = await fetch("/api/personas");
-  if (!res.ok) throw new Error("Could not load the specimen documents.");
+  if (!res.ok) return fail(res, "Could not load the specimen documents");
   return res.json();
 }
 
