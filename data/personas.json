@@ -1,0 +1,90 @@
+[
+  {
+    "id": "farmer",
+    "name": "Ramesh Pawar",
+    "tagline": "47 · tribal farmer · Dindori, Nashik",
+    "story": "Owns 1.4 hectares. Has never applied for anything except a ration card, because nobody ever told him what else he could ask for.",
+    "portrait": "/personas/farmer.png",
+    "document": "/personas/doc-farmer.png",
+    "document_type": "ration_card",
+    "document_label": "Ration card (Priority)",
+    "accent": "green",
+    "fields": {
+      "state": "MH", "residence": "rural", "gender": "male", "age": 47,
+      "ration_card_type": "PHH", "household_size": 5, "annual_income_inr": 145000,
+      "category": "ST", "owns_agri_land": true, "landholding_ha": 1.4
+    },
+    "confidence": {
+      "state": 0.98, "residence": 0.86, "gender": 0.95, "age": 0.91,
+      "ration_card_type": 0.97, "household_size": 0.93, "annual_income_inr": 0.74,
+      "category": 0.88, "owns_agri_land": 0.9, "landholding_ha": 0.82
+    },
+    "masked_ids": ["MH-13-XXXX-4417"]
+  },
+  {
+    "id": "student",
+    "name": "Sunita Kamble",
+    "tagline": "19 · B.Sc. student · Pune city",
+    "story": "First in her family to reach college. Her fees are due in three weeks and she does not know a waiver exists for exactly her income band.",
+    "portrait": "/personas/student.png",
+    "document": "/personas/doc-student.png",
+    "document_type": "income_certificate",
+    "document_label": "Income certificate",
+    "accent": "violet",
+    "fields": {
+      "state": "MH", "residence": "urban", "gender": "female", "age": 19,
+      "annual_income_inr": 480000, "category": "GENERAL", "household_size": 4,
+      "is_student": true, "education_level": "graduate", "occupation": "student"
+    },
+    "confidence": {
+      "state": 0.97, "residence": 0.9, "gender": 0.94, "age": 0.93,
+      "annual_income_inr": 0.96, "category": 0.87, "household_size": 0.91,
+      "is_student": 0.89, "education_level": 0.85, "occupation": 0.88
+    },
+    "masked_ids": ["IC/PUN/2026/XXXXX"]
+  },
+  {
+    "id": "worker",
+    "name": "Imran Shaikh",
+    "tagline": "28 · construction worker · Mumbai",
+    "story": "Paid daily, on site. Registered on e-Shram once and has no idea it entitles him to anything beyond the card itself.",
+    "portrait": "/personas/worker.png",
+    "document": "/personas/doc-worker.png",
+    "document_type": "labour_card",
+    "document_label": "e-Shram labour card",
+    "accent": "mari",
+    "fields": {
+      "state": "MH", "residence": "urban", "gender": "male", "age": 28,
+      "annual_income_inr": 180000, "category": "OBC", "household_size": 4,
+      "occupation": "labourer", "works_unorganised": true, "owns_pucca_house": false
+    },
+    "confidence": {
+      "state": 0.95, "residence": 0.92, "gender": 0.94, "age": 0.9,
+      "annual_income_inr": 0.83, "category": 0.86, "household_size": 0.88,
+      "occupation": 0.91, "works_unorganised": 0.94, "owns_pucca_house": 0.71
+    },
+    "masked_ids": ["XXXX-XXXX-7731"]
+  },
+  {
+    "id": "senior",
+    "name": "Kamalabai Jadhav",
+    "tagline": "68 · widow · Ausa, Latur",
+    "story": "Lives with her grandson. Collects a pension of nothing, because the form that would give her one has to be fetched, filled, stamped and returned.",
+    "portrait": "/personas/senior.png",
+    "document": "/personas/doc-senior.png",
+    "document_type": "ration_card",
+    "document_label": "Ration card (Antyodaya)",
+    "accent": "coral",
+    "fields": {
+      "state": "MH", "residence": "rural", "gender": "female", "age": 68,
+      "ration_card_type": "AAY", "household_size": 2, "annual_income_inr": 18000,
+      "category": "OBC", "is_widow": true, "owns_agri_land": false
+    },
+    "confidence": {
+      "state": 0.98, "residence": 0.88, "gender": 0.96, "age": 0.92,
+      "ration_card_type": 0.97, "household_size": 0.94, "annual_income_inr": 0.79,
+      "category": 0.85, "is_widow": 0.9, "owns_agri_land": 0.8
+    },
+    "masked_ids": ["MH-25-XXXX-9120"]
+  }
+]
