@@ -1,0 +1,1707 @@
+{
+  "_default": {
+    "steps": [
+      {
+        "title": "Check the notification",
+        "detail": "Open the source link on the scheme card and confirm the current eligibility and deadline before applying."
+      }
+    ],
+    "where": "Your nearest Common Service Centre (CSC)",
+    "processing_time": "Varies by district",
+    "helpline": "Ask at the CSC counter",
+    "tips": [
+      "Carry originals plus one photocopy set of every document."
+    ],
+    "common_rejections": [
+      "Name mismatch between Aadhaar and the supporting document.",
+      "Unstamped or unverified form.",
+      "Income certificate older than one year."
+    ]
+  },
+  "CEN-PM-KISAN": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://pmkisan.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, 7/12 land extract, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Village Revenue Office / CSC",
+    "url": "https://pmkisan.gov.in",
+    "processing_time": "Instalments credited every four months",
+    "helpline": "155261 / 011-24300606",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "land_record_7_12",
+        "label": "7/12 land extract"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Your name on the 7/12 extract and on Aadhaar must match exactly.",
+      "Complete e-KYC on the portal or no instalment is released.",
+      "Land must be in your own name — ancestral land still in a parent's name does not qualify."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMAY-G": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the PM Awas Yojana — Gramin application form at Gram Panchayat / Block Development Office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Bank passbook (first page), MGNREGA job card. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Gram Panchayat / Block Development Office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      },
+      {
+        "key": "job_card",
+        "label": "MGNREGA job card"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMAY-U": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://pmaymis.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Income certificate, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Urban Local Body",
+    "url": "https://pmaymis.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMJAY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Ayushman Bharat PM-JAY application form at Any empanelled hospital or CSC. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Ration card. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Any empanelled hospital or CSC",
+    "url": null,
+    "processing_time": "Card issued the same day at a CSC",
+    "helpline": "14555",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "ration_card",
+        "label": "Ration card"
+      }
+    ],
+    "tips": [
+      "You do not apply for treatment in advance — you carry the card and use it when admitted.",
+      "Check your eligibility first on the PM-JAY portal or by calling 14555.",
+      "Treatment is cashless at empanelled hospitals only. Ask for the Arogyamitra desk."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-IGNOAPS": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Indira Gandhi National Old Age Pension application form at Tahsil / Block Office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Age proof, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Tahsil / Block Office",
+    "url": null,
+    "processing_time": "45 to 90 days",
+    "helpline": "State social welfare helpline",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "age_proof",
+        "label": "Age proof"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Age proof is the usual sticking point — a school certificate or Aadhaar is accepted.",
+      "Pension is credited directly to the bank account; keep it active."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-IGNWPS": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Indira Gandhi National Widow Pension application form at Tahsil / Block Office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Spouse's death certificate, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Tahsil / Block Office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "death_certificate_spouse",
+        "label": "Spouse's death certificate"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-IGNDPS": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Indira Gandhi National Disability Pension application form at Tahsil / Block Office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Disability certificate, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Tahsil / Block Office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "disability_certificate",
+        "label": "Disability certificate"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMUY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the PM Ujjwala Yojana (free LPG connection) application form at Any LPG distributor. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Ration card, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Any LPG distributor",
+    "url": null,
+    "processing_time": "Connection released in 7 to 15 days",
+    "helpline": "1906 (LPG emergency) / 1800-266-6696",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "ration_card",
+        "label": "Ration card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "The connection is issued in the woman's name only.",
+      "Carry the ration card showing every household member."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-ESHRAM": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://eshram.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Any CSC",
+    "url": "https://eshram.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMSYM": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the PM Shram Yogi Maandhan pension application form at Any CSC. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Any CSC",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMJJBY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the PM Jeevan Jyoti Bima Yojana application form at Your bank branch. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Your bank branch",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMSBY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the PM Suraksha Bima Yojana application form at Your bank branch. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Your bank branch",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-APY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Atal Pension Yojana application form at Your bank branch. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Your bank branch",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMVISHWAKARMA": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://pmvishwakarma.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Bank passbook (first page), Ration card."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Any CSC",
+    "url": "https://pmvishwakarma.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      },
+      {
+        "key": "ration_card",
+        "label": "Ration card"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMFBY": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://pmfby.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, 7/12 land extract, Bank passbook (first page), Crop sowing certificate."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Bank or CSC",
+    "url": "https://pmfby.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "land_record_7_12",
+        "label": "7/12 land extract"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      },
+      {
+        "key": "sowing_certificate",
+        "label": "Crop sowing certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-KCC": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Kisan Credit Card application form at Your bank branch. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, 7/12 land extract, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Your bank branch",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "land_record_7_12",
+        "label": "7/12 land extract"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-SCH-POSTMATRIC-SC": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://scholarships.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Caste certificate, Income certificate, Latest marksheet, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Your college scholarship cell",
+    "url": "https://scholarships.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "caste_certificate",
+        "label": "Caste certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "marksheet",
+        "label": "Latest marksheet"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-SCH-PREMATRIC-ST": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://scholarships.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Caste certificate, Income certificate, School bonafide certificate."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Your school",
+    "url": "https://scholarships.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "caste_certificate",
+        "label": "Caste certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "school_certificate",
+        "label": "School bonafide certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-PMKVY": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://www.pmkvyofficial.org with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Nearest training centre",
+    "url": "https://www.pmkvyofficial.org",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "CEN-SVANIDHI": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://pmsvanidhi.mohua.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Certificate of vending, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Urban Local Body",
+    "url": "https://pmsvanidhi.mohua.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "vending_certificate",
+        "label": "Certificate of vending"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-LADKI-BAHIN": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://ladakibahin.maharashtra.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Domicile certificate, Ration card, Income certificate, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Anganwadi / Setu centre",
+    "url": "https://ladakibahin.maharashtra.gov.in",
+    "processing_time": "Approval typically within 30 days",
+    "helpline": "181",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "ration_card",
+        "label": "Ration card"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "The bank account must be in your own name and Aadhaar-seeded, not a joint account.",
+      "Anganwadi sevikas and Setu centres file this for free.",
+      "Only one woman per family can receive it."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-SHRAVANBAL": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Shravanbal Seva Rajya Nivrutti Vetan Yojana application form at Tahsildar / Sanjay Gandhi Yojana cell. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Domicile certificate, Age proof, Income certificate. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Tahsildar / Sanjay Gandhi Yojana cell",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "age_proof",
+        "label": "Age proof"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-SGNAY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Sanjay Gandhi Niradhar Anudan Yojana application form at Tahsildar office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Domicile certificate, Income certificate. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Tahsildar office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-MJPJAY": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Mahatma Jyotirao Phule Jan Arogya Yojana application form at Any empanelled hospital, Arogyamitra desk. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Ration card. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Any empanelled hospital, Arogyamitra desk",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "ration_card",
+        "label": "Ration card"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-RAMAI-AWAS": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Ramai Awas Yojana (housing) application form at Gram Panchayat / Municipal body. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Domicile certificate, Caste certificate, Income certificate. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Gram Panchayat / Municipal body",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "caste_certificate",
+        "label": "Caste certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-SHABARI-GHARKUL": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Shabari Adivasi Gharkul Yojana application form at Integrated Tribal Development Project office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Domicile certificate, Caste certificate, Income certificate. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "Integrated Tribal Development Project office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "caste_certificate",
+        "label": "Caste certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-BIRSA-MUNDA": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://mahadbt.maharashtra.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Caste certificate, 7/12 land extract, Income certificate."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "Taluka Agriculture Officer",
+    "url": "https://mahadbt.maharashtra.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "caste_certificate",
+        "label": "Caste certificate"
+      },
+      {
+        "key": "land_record_7_12",
+        "label": "7/12 land extract"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-EBC-SHAHU": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://mahadbt.maharashtra.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Domicile certificate, Income certificate, Latest marksheet, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "College scholarship cell",
+    "url": "https://mahadbt.maharashtra.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "marksheet",
+        "label": "Latest marksheet"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-PANJABRAO": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://mahadbt.maharashtra.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Domicile certificate, Income certificate, Latest marksheet, Hostel admission letter."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "College scholarship cell",
+    "url": "https://mahadbt.maharashtra.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "marksheet",
+        "label": "Latest marksheet"
+      },
+      {
+        "key": "hostel_certificate",
+        "label": "Hostel admission letter"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-ANNASAHEB-PATIL": {
+    "steps": [
+      {
+        "title": "Create your login",
+        "detail": "Register on https://udyog.mahaswayam.gov.in with a mobile number linked to your Aadhaar. The OTP arrives on that number."
+      },
+      {
+        "title": "Fill the application",
+        "detail": "Enter your details exactly as they appear on your Aadhaar. A mismatch in the name or date of birth is the single most common cause of rejection."
+      },
+      {
+        "title": "Upload documents",
+        "detail": "Scan or photograph each document. Most portals accept JPG or PDF under 200 KB per file. Required here: Aadhaar card, Domicile certificate, Income certificate, Business project report, Bank passbook (first page)."
+      },
+      {
+        "title": "Submit and note the reference",
+        "detail": "After submitting you get an application ID. Photograph that screen — you need the ID to track the status or to follow up at the office."
+      },
+      {
+        "title": "Track it",
+        "detail": "Check the status on the same portal after 15 days. If it is still 'under scrutiny' after 30 days, visit the office named below with your application ID."
+      }
+    ],
+    "where": "District Mahamandal office",
+    "url": "https://udyog.mahaswayam.gov.in",
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      },
+      {
+        "key": "project_report",
+        "label": "Business project report"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-KANYADAN": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Shubh Mangal Samuhik Vivah (marriage assistance) application form at District Women & Child Development office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Domicile certificate, Age proof, Income certificate. Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "District Women & Child Development office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "age_proof",
+        "label": "Age proof"
+      },
+      {
+        "key": "income_certificate",
+        "label": "Income certificate"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  },
+  "MH-FISHER-KISAN": {
+    "steps": [
+      {
+        "title": "Collect the form",
+        "detail": "Ask for the Matsya Vyavsay Vikas assistance for fishers application form at District Fisheries Office. It is free — never pay for the form itself."
+      },
+      {
+        "title": "Attach your documents",
+        "detail": "Attach self-attested photocopies of: Aadhaar card, Domicile certificate, Fisher registration card, Bank passbook (first page). Carry the originals for verification."
+      },
+      {
+        "title": "Get it verified",
+        "detail": "The Gram Sevak, Talathi or ward officer signs and stamps the form. This is the step people skip, and an unstamped form is returned."
+      },
+      {
+        "title": "Submit and take a receipt",
+        "detail": "Hand it in at the counter and insist on a dated acknowledgement receipt. Without it you have no proof you applied."
+      },
+      {
+        "title": "Follow up",
+        "detail": "Return with your receipt after 30 days. If there is no movement, escalate to the Block Development Officer or use the state grievance portal."
+      }
+    ],
+    "where": "District Fisheries Office",
+    "url": null,
+    "processing_time": "Usually 30 to 60 days",
+    "helpline": "Ask at the office named above",
+    "documents": [
+      {
+        "key": "aadhaar",
+        "label": "Aadhaar card"
+      },
+      {
+        "key": "domicile",
+        "label": "Domicile certificate"
+      },
+      {
+        "key": "fisher_id",
+        "label": "Fisher registration card"
+      },
+      {
+        "key": "bank_passbook",
+        "label": "Bank passbook (first page)"
+      }
+    ],
+    "tips": [
+      "Carry originals plus one self-attested photocopy set.",
+      "Your name must be spelled identically on every document.",
+      "Never pay an agent for a free government form."
+    ],
+    "common_rejections": [
+      "Name or date of birth mismatch against Aadhaar.",
+      "Income certificate issued more than a year ago.",
+      "Bank account not seeded with Aadhaar."
+    ]
+  }
+}
