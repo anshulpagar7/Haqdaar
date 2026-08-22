@@ -107,13 +107,13 @@ export default function SchemeField({ total, living, eligible, height = 380, pau
         if (phase === "eligible") {
           const pulse = reduced ? 1 : 0.82 + 0.18 * Math.sin(now * 0.004 + n.seed);
           out.push({ sx, sy, r: (1.5 + near * 2.6) * big * pulse, a: 0.55 + near * 0.45,
-                     c: "255,176,32", glow: true });
+                     c: "46,125,79", glow: true });
         } else if (phase === "candidate") {
-          out.push({ sx, sy, r: (0.9 + near * 1.7) * big, a: 0.20 + near * 0.42,
-                     c: "180,176,212", glow: false });
+          out.push({ sx, sy, r: (0.9 + near * 1.7) * big, a: 0.30 + near * 0.45,
+                     c: "113,132,122", glow: false });
         } else {
-          out.push({ sx, sy, r: (0.6 + near * 0.9) * big, a: 0.05 + near * 0.09,
-                     c: "120,116,160", glow: false });
+          out.push({ sx, sy, r: (0.6 + near * 0.9) * big, a: 0.16 + near * 0.24,
+                     c: "186,176,155", glow: false });
         }
       }
 
@@ -141,9 +141,9 @@ export default function SchemeField({ total, living, eligible, height = 380, pau
       <canvas ref={ref} role="img"
         aria-label={`Eligibility field: ${eligible} confirmed eligible, ${living} of ${total} schemes still possible.`} />
       <div className="viz-legend">
-        <span><i style={{ background: "var(--mari)" }} />Eligible</span>
-        <span><i style={{ background: "#B4B0D4" }} />Still possible</span>
-        <span><i style={{ background: "#57536F" }} />Ruled out</span>
+        <span><i style={{ background: "var(--green)" }} />Eligible</span>
+        <span><i style={{ background: "#71847A" }} />Still possible</span>
+        <span><i style={{ background: "#CFC4AA" }} />Ruled out</span>
       </div>
     </div>
   );
