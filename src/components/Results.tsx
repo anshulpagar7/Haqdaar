@@ -1,15 +1,19 @@
 import { useState } from "react";
 import Icon from "./Icon";
+import SchemeCard from "./SchemeCard";
 import { documentGap, totalAnnualValue } from "../engine";
 import { buildApplicationPdf } from "../lib/pdf";
+import { saveApplication } from "../lib/api";
 import { T, tr } from "../i18n";
 import type { Lang, Profile, Scheme } from "../engine/types";
 
-export default function Results({ eligible, profile, docsHeld, lang, onOpen, onRestart }: {
+export default function Results({ eligible, profile, docsHeld, lang, asked, onRestart }: {
   eligible: Scheme[]; profile: Profile; docsHeld: string[]; lang: Lang;
-  onOpen: (s: Scheme) => void; onRestart: () => void;
+  asked: number; onRestart: () => void;
 }) {
+  const [open, setOpen] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  const [ref, setRef] = useState<string | null>(null);
   const total = totalAnnualValue(eligible);
   const { missing } = documentGap(eligible, docsHeld);
 
@@ -24,62 +28,78 @@ export default function Results({ eligible, profile, docsHeld, lang, onOpen, onR
     } finally { setBusy(false); }
   }
 
-  const amount = (s: Scheme) =>
-    s.benefit.amount_inr_per_year ? `₹ ${s.benefit.amount_inr_per_year.toLocaleString("en-IN")} / yr`
-    : s.benefit.one_time_inr ? `₹ ${s.benefit.one_time_inr.toLocaleString("en-IN")} one-time`
-    : s.benefit.note ?? "";
+  async function save() {
+    try {
+      const r = await saveApplication({
+        lang, profile, docsHeld, eligibleIds: eligible.map((s) => s.id),
+        totalValue: total, questionsAsked: asked,
+      });
+      setRef(r.reference);
+    } catch { /* the result is still on screen either way */ }
+  }
 
   return (
-    <section className="glass card" aria-labelledby="res-h">
-      <p className="eyebrow">{tr(T.yourResult, lang)}</p>
+    <section className="glass card">
+      <div className="steps" aria-hidden="true"><i className="on" /><i className="on" /><i className="on" /></div>
+      <p className="eyebrow">Step 3 of 3 · {tr(T.yourResult, lang)}</p>
       <p className="sub" style={{ margin: 0 }}>{tr(T.entitled, lang)}</p>
       <div className="hero">
         <span className="num h-num">{eligible.length}</span>
-        <span className="h-w" id="res-h">{tr(T.schemes, lang)}</span>
+        <span className="h-w">{tr(T.schemes, lang)}</span>
       </div>
 
       {total > 0 && (
         <div className="glass tint-green card" style={{ margin: "8px 0 18px" }}>
           <p className="eyebrow" style={{ color: "var(--green)", margin: "0 0 6px" }}>{tr(T.perYear, lang)}</p>
-          <div className="num" style={{ fontSize: 34, color: "var(--green)" }}>
-            ₹ {total.toLocaleString("en-IN")}
-          </div>
+          <div className="num" style={{ fontSize: 34, color: "var(--green)" }}>₹ {total.toLocaleString("en-IN")}</div>
+          <p className="tiny" style={{ margin: "6px 0 0", color: "var(--green)" }}>
+            Already allocated. Already theirs. Simply never claimed.
+          </p>
         </div>
       )}
 
       {eligible.length === 0 && <p className="sub">{tr(T.noneFound, lang)}</p>}
 
-      {eligible.map((s) => {
-        const need = s.documents_required.filter((d) => !docsHeld.includes(d));
-        return (
-          <button className="scheme" key={s.id} onClick={() => onOpen(s)}>
-            <span style={{ flex: 1, minWidth: 0 }}>
-              <span className="n">{s.name[lang] ?? s.name.en}</span>
-              <span className="a">{amount(s)}</span>
-            </span>
-            <span className={"chip " + (need.length ? "chip-mari" : "chip-green")}>
-              {need.length ? `${need.length} ${tr(T.docsMissing, lang)}` : tr(T.docsReady, lang)}
-            </span>
-          </button>
-        );
-      })}
+      <p className="tiny" style={{ marginBottom: 10 }}>
+        <Icon name="info" size={12} /> Tap any scheme to open the full instructions — steps,
+        documents, helpline and the clause it satisfied.
+      </p>
+
+      <div className="grid">
+        {eligible.map((s) => (
+          <SchemeCard key={s.id} scheme={s} profile={profile} docsHeld={docsHeld} lang={lang}
+                      open={open === s.id} onToggle={() => setOpen(open === s.id ? null : s.id)} />
+        ))}
+      </div>
 
       {missing.length > 0 && (
-        <div className="glass card" style={{ marginTop: 12 }}>
+        <div className="glass card" style={{ marginTop: 14 }}>
           <p className="eyebrow" style={{ margin: "0 0 8px" }}>{tr(T.needed, lang)}</p>
-          <ul style={{ margin: 0, paddingLeft: 18, fontSize: 14, lineHeight: 1.8, color: "var(--muted)" }}>
-            {missing.map((d) => <li key={d}>{d.replace(/_/g, " ")}</li>)}
-          </ul>
+          <div className="doclist">
+            {missing.map((d) => <span key={d} className="doc-need">+ {d.replace(/_/g, " ")}</span>)}
+          </div>
         </div>
       )}
 
-      <p className="tiny" style={{ marginTop: 16 }}>{tr(T.auditNote, lang)}</p>
+      {ref && (
+        <div className="glass tint-mari card" style={{ marginTop: 14 }}>
+          <p className="eyebrow" style={{ margin: "0 0 4px" }}>Saved · quote this at the office</p>
+          <div className="num" style={{ fontSize: 28, color: "var(--mari)", letterSpacing: ".06em" }}>{ref}</div>
+          <p className="tiny" style={{ margin: "6px 0 0" }}>
+            Kept for 30 days, then deleted. No identity numbers are stored against it.
+          </p>
+        </div>
+      )}
 
       <div className="dock" style={{ marginTop: 16 }}>
         <button className="btn btn-primary btn-block" disabled={busy || !eligible.length} onClick={download}>
-          {busy ? <span className="spin" /> : <Icon name="down" size={16} />}
-          {tr(T.download, lang)}
+          {busy ? <span className="spin" /> : <Icon name="down" size={16} />}{tr(T.download, lang)}
         </button>
+        {!ref && (
+          <button className="btn btn-ghost btn-block" disabled={!eligible.length} onClick={save}>
+            <Icon name="shield" size={16} />Save and get a reference code
+          </button>
+        )}
         <button className="btn btn-ghost btn-block" onClick={onRestart}>
           <Icon name="refresh" size={16} />{tr(T.startOver, lang)}
         </button>
