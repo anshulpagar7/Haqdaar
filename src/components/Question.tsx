@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import Counter from "./Counter";
+import Icon from "./Icon";
 import { T, tr } from "../i18n";
 import { hasNativeSTT, interpret, listenNative, NO_WORDS, recordClip, say, stopSpeaking, YES_WORDS } from "../lib/speech";
 import { transcribe } from "../lib/api";
 import type { AttributeDef, Lang, NextQuestion, Value } from "../engine/types";
 
-interface Opt { value: Value; label: string; hint?: string; spoken: string[] }
+interface Opt { value: Value; label: string; spoken: string[] }
 
 function options(def: AttributeDef, lang: Lang): Opt[] {
   if (def.type === "boolean")
@@ -27,8 +27,8 @@ function options(def: AttributeDef, lang: Lang): Opt[] {
   });
 }
 
-export default function Question({ q, index, lang, trail, start, onAnswer, onSkip }: {
-  q: NextQuestion; index: number; lang: Lang; trail: number[]; start: number;
+export default function Question({ q, index, lang, onAnswer, onSkip }: {
+  q: NextQuestion; index: number; lang: Lang;
   onAnswer: (attr: string, value: Value) => void;
   onSkip: (attr: string) => void;
 }) {
@@ -50,45 +50,45 @@ export default function Question({ q, index, lang, trail, start, onAnswer, onSki
       if (v !== undefined) onAnswer(q.attr, v as Value);
     } catch {
       setHeard("—");
-    } finally {
-      setListening(false);
-    }
+    } finally { setListening(false); }
   }
 
   return (
-    <>
-      <div className="body">
-        <div className="steps">
-          {[0, 1, 2, 3, 4].map((i) => <i key={i} className={i <= index ? "on" : ""} />)}
-        </div>
-        <p className="eyebrow">{tr(T.question, lang).toUpperCase()} {index + 1}</p>
-        <h1>{text}</h1>
-        {lang !== "en" && <p className="sub">{q.def.question.en}</p>}
-
-        <Counter trail={trail} lang={lang} start={start} />
-
-        <div className="answers">
-          {opts.map((o) => (
-            <button key={String(o.value)} className="ans" onClick={() => onAnswer(q.attr, o.value)}>
-              <span>{o.label}</span>
-            </button>
-          ))}
-          <button className="ans" style={{ color: "var(--muted)" }} onClick={() => onSkip(q.attr)}>
-            <span>{tr(T.dontKnow, lang)}</span>
-          </button>
-        </div>
-
-        <button className="btn ghost sm" style={{ marginTop: 14 }} disabled={listening} onClick={listen}>
-          {listening ? <><span className="spin dark" /> …</> : <>🎙  {tr(T.speak, lang)}</>}
-        </button>
-        {heard && <p className="tiny" style={{ marginTop: 8 }}>heard: “{heard}”</p>}
-
-        <p className="tiny" style={{ marginTop: 14 }}>
-          This question was chosen because it is expected to rule out{" "}
-          <b>{q.gain.toFixed(1)}</b> of the {q.candidatesNow} remaining schemes —
-          the highest gain per unit of effort of anything we could ask.
-        </p>
+    <section className="glass card" aria-labelledby="q-h">
+      <div className="steps" aria-hidden="true">
+        {[0, 1, 2, 3, 4].map((i) => <i key={i} className={i <= index ? "on" : ""} />)}
       </div>
-    </>
+
+      <p className="eyebrow">{tr(T.question, lang)} {index + 1}</p>
+      <h2 id="q-h" lang={lang} className={lang === "en" ? "" : "deva"}>{text}</h2>
+      {lang !== "en" && <p className="sub" style={{ marginBottom: 18 }}>{q.def.question.en}</p>}
+
+      <div className="answers" role="group" aria-labelledby="q-h">
+        {opts.map((o) => (
+          <button key={String(o.value)} className="ans" onClick={() => onAnswer(q.attr, o.value)}>
+            <span className={lang === "en" ? "" : "deva"}>{o.label}</span>
+            <span className="arw"><Icon name="arrow" size={16} /></span>
+          </button>
+        ))}
+        <button className="ans ans-quiet" onClick={() => onSkip(q.attr)}>
+          <span>{tr(T.dontKnow, lang)}</span>
+        </button>
+      </div>
+
+      <button className="btn btn-ghost btn-block btn-sm" style={{ marginTop: 14 }}
+              disabled={listening} onClick={listen}
+              aria-label={tr(T.speakAria, lang)}>
+        {listening ? <><span className="spin" />{tr(T.listening, lang)}</>
+                   : <><Icon name="mic" size={16} />{tr(T.speak, lang)}</>}
+      </button>
+      {heard && <p className="tiny" style={{ marginTop: 8 }}>{tr(T.heard, lang)} “{heard}”</p>}
+
+      <p className="tiny" style={{ marginTop: 16, borderTop: "1px solid var(--brd)", paddingTop: 12 }}>
+        <Icon name="spark" size={13} />{" "}
+        {tr(T.whyThis, lang)
+          .replace("{g}", q.gain.toFixed(1))
+          .replace("{c}", String(q.candidatesNow))}
+      </p>
+    </section>
   );
 }
