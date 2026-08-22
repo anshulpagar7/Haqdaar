@@ -1,0 +1,1572 @@
+[
+  {
+    "id": "CEN-PM-KISAN",
+    "name": {
+      "en": "PM-KISAN Samman Nidhi",
+      "hi": "पीएम-किसान सम्मान निधि",
+      "mr": "पीएम-किसान सन्मान निधी"
+    },
+    "authority": "Ministry of Agriculture & Farmers Welfare",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 6000
+    },
+    "criteria": [
+      {
+        "attr": "owns_agri_land",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 800000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "land_record_7_12",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://pmkisan.gov.in",
+      "office": "Village Revenue Office / CSC"
+    },
+    "clause_text": "All landholding farmer families, subject to the exclusion of higher income groups, are eligible for income support of Rs. 6,000 per year in three equal instalments.",
+    "source_url": "https://pmkisan.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMAY-G",
+    "name": {
+      "en": "PM Awas Yojana — Gramin",
+      "hi": "प्रधानमंत्री आवास योजना (ग्रामीण)",
+      "mr": "प्रधानमंत्री आवास योजना (ग्रामीण)"
+    },
+    "authority": "Ministry of Rural Development",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "one_time_inr": 120000,
+      "note": "Assistance for constructing a pucca house"
+    },
+    "criteria": [
+      {
+        "attr": "residence",
+        "op": "eq",
+        "value": "rural"
+      },
+      {
+        "attr": "owns_pucca_house",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 250000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook",
+      "job_card"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Gram Panchayat / Block Development Office"
+    },
+    "clause_text": "Households that are houseless, or living in houses with kutcha walls and kutcha roof, are entitled to assistance for construction of a pucca house.",
+    "source_url": "https://pmayg.nic.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMAY-U",
+    "name": {
+      "en": "PM Awas Yojana — Urban",
+      "hi": "प्रधानमंत्री आवास योजना (शहरी)",
+      "mr": "प्रधानमंत्री आवास योजना (शहरी)"
+    },
+    "authority": "Ministry of Housing & Urban Affairs",
+    "level": "central",
+    "benefit": {
+      "type": "subsidy",
+      "one_time_inr": 150000
+    },
+    "criteria": [
+      {
+        "attr": "residence",
+        "op": "eq",
+        "value": "urban"
+      },
+      {
+        "attr": "owns_pucca_house",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 600000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "income_certificate",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://pmaymis.gov.in",
+      "office": "Urban Local Body"
+    },
+    "clause_text": "Beneficiary families with annual household income up to Rs. 6,00,000 who do not own a pucca house anywhere in India are eligible.",
+    "source_url": "https://pmaymis.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMJAY",
+    "name": {
+      "en": "Ayushman Bharat PM-JAY",
+      "hi": "आयुष्मान भारत पीएम-जय",
+      "mr": "आयुष्मान भारत पीएम-जय"
+    },
+    "authority": "National Health Authority",
+    "level": "central",
+    "benefit": {
+      "type": "insurance",
+      "amount_inr_per_year": 500000,
+      "note": "Cashless hospital cover per family"
+    },
+    "criteria": [
+      {
+        "attr": "ration_card_type",
+        "op": "in",
+        "value": [
+          "AAY",
+          "PHH"
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 250000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "ration_card"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Any empanelled hospital or CSC"
+    },
+    "clause_text": "Families identified under the deprivation and occupational criteria of SECC 2011, and all Antyodaya ration card holders, are entitled to health cover of Rs. 5 lakh per family per year.",
+    "source_url": "https://pmjay.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-IGNOAPS",
+    "name": {
+      "en": "Indira Gandhi National Old Age Pension",
+      "hi": "इंदिरा गांधी राष्ट्रीय वृद्धावस्था पेंशन",
+      "mr": "इंदिरा गांधी राष्ट्रीय वृद्धापकाळ निवृत्तीवेतन"
+    },
+    "authority": "Ministry of Rural Development (NSAP)",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 2400
+    },
+    "criteria": [
+      {
+        "attr": "age",
+        "op": "gte",
+        "value": 60
+      },
+      {
+        "attr": "ration_card_type",
+        "op": "in",
+        "value": [
+          "AAY",
+          "PHH"
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "age_proof",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Tahsil / Block Office"
+    },
+    "clause_text": "A person of 60 years or above belonging to a household below the poverty line is eligible for old age pension under NSAP.",
+    "source_url": "https://nsap.nic.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-IGNWPS",
+    "name": {
+      "en": "Indira Gandhi National Widow Pension",
+      "hi": "इंदिरा गांधी राष्ट्रीय विधवा पेंशन",
+      "mr": "इंदिरा गांधी राष्ट्रीय विधवा निवृत्तीवेतन"
+    },
+    "authority": "Ministry of Rural Development (NSAP)",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 3600
+    },
+    "criteria": [
+      {
+        "attr": "is_widow",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          40,
+          79
+        ]
+      },
+      {
+        "attr": "ration_card_type",
+        "op": "in",
+        "value": [
+          "AAY",
+          "PHH"
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "death_certificate_spouse",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Tahsil / Block Office"
+    },
+    "clause_text": "A widow aged 40 to 79 years belonging to a household below the poverty line is eligible for widow pension under NSAP.",
+    "source_url": "https://nsap.nic.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-IGNDPS",
+    "name": {
+      "en": "Indira Gandhi National Disability Pension",
+      "hi": "इंदिरा गांधी राष्ट्रीय दिव्यांग पेंशन",
+      "mr": "इंदिरा गांधी राष्ट्रीय दिव्यांग निवृत्तीवेतन"
+    },
+    "authority": "Ministry of Rural Development (NSAP)",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 3600
+    },
+    "criteria": [
+      {
+        "attr": "has_disability_cert",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "disability_pct",
+        "op": "gte",
+        "value": 80
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          79
+        ]
+      },
+      {
+        "attr": "ration_card_type",
+        "op": "in",
+        "value": [
+          "AAY",
+          "PHH"
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "disability_certificate",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Tahsil / Block Office"
+    },
+    "clause_text": "A person aged 18 to 79 years with severe or multiple disability of 80 percent or more, belonging to a household below the poverty line, is eligible for disability pension.",
+    "source_url": "https://nsap.nic.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMUY",
+    "name": {
+      "en": "PM Ujjwala Yojana (free LPG connection)",
+      "hi": "प्रधानमंत्री उज्ज्वला योजना",
+      "mr": "प्रधानमंत्री उज्ज्वला योजना"
+    },
+    "authority": "Ministry of Petroleum & Natural Gas",
+    "level": "central",
+    "benefit": {
+      "type": "subsidy",
+      "one_time_inr": 1600
+    },
+    "criteria": [
+      {
+        "attr": "gender",
+        "op": "eq",
+        "value": "female"
+      },
+      {
+        "attr": "age",
+        "op": "gte",
+        "value": 18
+      },
+      {
+        "attr": "has_lpg_connection",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 250000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "ration_card",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Any LPG distributor"
+    },
+    "clause_text": "An adult woman belonging to a poor household which does not already have an LPG connection in the household is eligible for a deposit-free connection.",
+    "source_url": "https://pmuy.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-ESHRAM",
+    "name": {
+      "en": "e-Shram card for unorganised workers",
+      "hi": "ई-श्रम कार्ड",
+      "mr": "ई-श्रम कार्ड"
+    },
+    "authority": "Ministry of Labour & Employment",
+    "level": "central",
+    "benefit": {
+      "type": "insurance",
+      "amount_inr_per_year": 200000,
+      "note": "Accidental insurance cover plus scheme portability"
+    },
+    "criteria": [
+      {
+        "attr": "works_unorganised",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          16,
+          59
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://eshram.gov.in",
+      "office": "Any CSC"
+    },
+    "clause_text": "Any unorganised worker aged between 16 and 59 years, who is not a member of EPFO or ESIC and is not an income tax payer, may register on the e-Shram portal.",
+    "source_url": "https://eshram.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMSYM",
+    "name": {
+      "en": "PM Shram Yogi Maandhan pension",
+      "hi": "प्रधानमंत्री श्रम योगी मानधन",
+      "mr": "प्रधानमंत्री श्रम योगी मानधन"
+    },
+    "authority": "Ministry of Labour & Employment",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 36000,
+      "note": "Assured pension of Rs 3,000/month after age 60"
+    },
+    "criteria": [
+      {
+        "attr": "works_unorganised",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          40
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 180000
+      },
+      {
+        "attr": "has_bank_account",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Any CSC"
+    },
+    "clause_text": "An unorganised worker aged 18 to 40 years with monthly income of Rs. 15,000 or below may enrol for an assured monthly pension of Rs. 3,000 after attaining 60 years.",
+    "source_url": "https://maandhan.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMJJBY",
+    "name": {
+      "en": "PM Jeevan Jyoti Bima Yojana",
+      "hi": "प्रधानमंत्री जीवन ज्योति बीमा योजना",
+      "mr": "प्रधानमंत्री जीवन ज्योती विमा योजना"
+    },
+    "authority": "Department of Financial Services",
+    "level": "central",
+    "benefit": {
+      "type": "insurance",
+      "amount_inr_per_year": 200000,
+      "note": "Rs 2 lakh life cover for a Rs 436 annual premium"
+    },
+    "criteria": [
+      {
+        "attr": "has_bank_account",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          50
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Your bank branch"
+    },
+    "clause_text": "All savings bank account holders in the age group of 18 to 50 years are eligible to join the scheme.",
+    "source_url": "https://jansuraksha.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMSBY",
+    "name": {
+      "en": "PM Suraksha Bima Yojana",
+      "hi": "प्रधानमंत्री सुरक्षा बीमा योजना",
+      "mr": "प्रधानमंत्री सुरक्षा विमा योजना"
+    },
+    "authority": "Department of Financial Services",
+    "level": "central",
+    "benefit": {
+      "type": "insurance",
+      "amount_inr_per_year": 200000,
+      "note": "Rs 2 lakh accident cover for Rs 20 a year"
+    },
+    "criteria": [
+      {
+        "attr": "has_bank_account",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          70
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Your bank branch"
+    },
+    "clause_text": "All savings bank account holders in the age group of 18 to 70 years are eligible to join the scheme.",
+    "source_url": "https://jansuraksha.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-APY",
+    "name": {
+      "en": "Atal Pension Yojana",
+      "hi": "अटल पेंशन योजना",
+      "mr": "अटल पेन्शन योजना"
+    },
+    "authority": "PFRDA",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 60000,
+      "note": "Guaranteed pension up to Rs 5,000/month after 60"
+    },
+    "criteria": [
+      {
+        "attr": "has_bank_account",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          40
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 500000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Your bank branch"
+    },
+    "clause_text": "Any citizen of India between 18 and 40 years of age having a savings bank account, who is not an income tax payer, may join the scheme.",
+    "source_url": "https://npscra.nsdl.co.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMVISHWAKARMA",
+    "name": {
+      "en": "PM Vishwakarma (artisan support)",
+      "hi": "पीएम विश्वकर्मा",
+      "mr": "पीएम विश्वकर्मा"
+    },
+    "authority": "Ministry of MSME",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "one_time_inr": 15000,
+      "note": "Toolkit grant, skill stipend and collateral-free credit"
+    },
+    "criteria": [
+      {
+        "attr": "occupation",
+        "op": "in",
+        "value": [
+          "artisan",
+          "self_employed"
+        ]
+      },
+      {
+        "attr": "age",
+        "op": "gte",
+        "value": 18
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook",
+      "ration_card"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://pmvishwakarma.gov.in",
+      "office": "Any CSC"
+    },
+    "clause_text": "Artisans and craftspeople working with hands and tools in one of the eighteen recognised trades, aged 18 years or above, are eligible for registration.",
+    "source_url": "https://pmvishwakarma.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMFBY",
+    "name": {
+      "en": "PM Fasal Bima Yojana (crop insurance)",
+      "hi": "प्रधानमंत्री फसल बीमा योजना",
+      "mr": "प्रधानमंत्री पीक विमा योजना"
+    },
+    "authority": "Ministry of Agriculture & Farmers Welfare",
+    "level": "central",
+    "benefit": {
+      "type": "insurance",
+      "amount_inr_per_year": 40000,
+      "note": "Crop loss cover at 2% premium"
+    },
+    "criteria": [
+      {
+        "attr": "owns_agri_land",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "occupation",
+        "op": "eq",
+        "value": "farmer"
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "land_record_7_12",
+      "bank_passbook",
+      "sowing_certificate"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://pmfby.gov.in",
+      "office": "Bank or CSC"
+    },
+    "clause_text": "All farmers growing notified crops in a notified area, including sharecroppers and tenant farmers, are eligible for coverage.",
+    "source_url": "https://pmfby.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-KCC",
+    "name": {
+      "en": "Kisan Credit Card",
+      "hi": "किसान क्रेडिट कार्ड",
+      "mr": "किसान क्रेडिट कार्ड"
+    },
+    "authority": "Department of Financial Services",
+    "level": "central",
+    "benefit": {
+      "type": "subsidy",
+      "amount_inr_per_year": 12000,
+      "note": "Interest subvention on crop loans up to Rs 3 lakh"
+    },
+    "criteria": [
+      {
+        "attr": "owns_agri_land",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "has_bank_account",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "land_record_7_12",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Your bank branch"
+    },
+    "clause_text": "All farmers, individual or joint borrowers who are owner cultivators, are eligible for a Kisan Credit Card with short-term credit at a subvented rate.",
+    "source_url": "https://www.myscheme.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-SCH-POSTMATRIC-SC",
+    "name": {
+      "en": "Post-Matric Scholarship for SC students",
+      "hi": "अनुसूचित जाति पोस्ट-मैट्रिक छात्रवृत्ति",
+      "mr": "अनुसूचित जाती पोस्ट-मॅट्रिक शिष्यवृत्ती"
+    },
+    "authority": "Ministry of Social Justice & Empowerment",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 13500
+    },
+    "criteria": [
+      {
+        "attr": "category",
+        "op": "eq",
+        "value": "SC"
+      },
+      {
+        "attr": "is_student",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "education_level",
+        "op": "in",
+        "value": [
+          "higher_secondary",
+          "graduate"
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 250000
+      }
+    ],
+    "documents_required": [
+      "caste_certificate",
+      "income_certificate",
+      "marksheet",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://scholarships.gov.in",
+      "office": "Your college scholarship cell"
+    },
+    "clause_text": "Scholarship is open to students belonging to Scheduled Castes studying at post-matriculation stage whose parents' or guardians' income from all sources does not exceed Rs. 2,50,000 per annum.",
+    "source_url": "https://scholarships.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-SCH-PREMATRIC-ST",
+    "name": {
+      "en": "Pre-Matric Scholarship for ST students",
+      "hi": "अनुसूचित जनजाति प्री-मैट्रिक छात्रवृत्ति",
+      "mr": "अनुसूचित जमाती प्री-मॅट्रिक शिष्यवृत्ती"
+    },
+    "authority": "Ministry of Tribal Affairs",
+    "level": "central",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 4500
+    },
+    "criteria": [
+      {
+        "attr": "category",
+        "op": "eq",
+        "value": "ST"
+      },
+      {
+        "attr": "is_student",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "education_level",
+        "op": "in",
+        "value": [
+          "primary",
+          "secondary"
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 250000
+      }
+    ],
+    "documents_required": [
+      "caste_certificate",
+      "income_certificate",
+      "school_certificate"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://scholarships.gov.in",
+      "office": "Your school"
+    },
+    "clause_text": "Students belonging to Scheduled Tribes studying in classes IX and X, whose parents' annual income does not exceed Rs. 2,50,000, are eligible.",
+    "source_url": "https://scholarships.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-PMKVY",
+    "name": {
+      "en": "PM Kaushal Vikas Yojana (free skilling)",
+      "hi": "प्रधानमंत्री कौशल विकास योजना",
+      "mr": "प्रधानमंत्री कौशल्य विकास योजना"
+    },
+    "authority": "Ministry of Skill Development",
+    "level": "central",
+    "benefit": {
+      "type": "service",
+      "note": "Free short-term skill training with certification and placement support"
+    },
+    "criteria": [
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          15,
+          45
+        ]
+      },
+      {
+        "attr": "occupation",
+        "op": "in",
+        "value": [
+          "unemployed",
+          "student",
+          "labourer",
+          "homemaker"
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://www.pmkvyofficial.org",
+      "office": "Nearest training centre"
+    },
+    "clause_text": "Any candidate of Indian nationality between 15 and 45 years of age who is either unemployed or a school or college dropout may enrol for training.",
+    "source_url": "https://www.pmkvyofficial.org",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "CEN-SVANIDHI",
+    "name": {
+      "en": "PM SVANidhi (street vendor loan)",
+      "hi": "पीएम स्वनिधि",
+      "mr": "पीएम स्वनिधी"
+    },
+    "authority": "Ministry of Housing & Urban Affairs",
+    "level": "central",
+    "benefit": {
+      "type": "subsidy",
+      "one_time_inr": 10000,
+      "note": "Collateral-free working capital loan with interest subsidy"
+    },
+    "criteria": [
+      {
+        "attr": "occupation",
+        "op": "eq",
+        "value": "self_employed"
+      },
+      {
+        "attr": "residence",
+        "op": "eq",
+        "value": "urban"
+      },
+      {
+        "attr": "age",
+        "op": "gte",
+        "value": 18
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "vending_certificate",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://pmsvanidhi.mohua.gov.in",
+      "office": "Urban Local Body"
+    },
+    "clause_text": "Street vendors carrying out vending in urban areas as on or before 24 March 2020, holding a certificate of vending or identified in the survey, are eligible.",
+    "source_url": "https://pmsvanidhi.mohua.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-LADKI-BAHIN",
+    "name": {
+      "en": "Mukhyamantri Majhi Ladki Bahin Yojana",
+      "hi": "मुख्यमंत्री माझी लाडकी बहीण योजना",
+      "mr": "मुख्यमंत्री माझी लाडकी बहीण योजना"
+    },
+    "authority": "Women & Child Development Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 18000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "gender",
+        "op": "eq",
+        "value": "female"
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          21,
+          65
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 250000
+      },
+      {
+        "attr": "has_bank_account",
+        "op": "eq",
+        "value": true
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "ration_card",
+      "income_certificate",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://ladakibahin.maharashtra.gov.in",
+      "office": "Anganwadi / Setu centre"
+    },
+    "clause_text": "Women resident in Maharashtra aged between 21 and 65 years, whose family annual income does not exceed Rs. 2,50,000, are eligible for monthly financial assistance.",
+    "source_url": "https://ladakibahin.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-SHRAVANBAL",
+    "name": {
+      "en": "Shravanbal Seva Rajya Nivrutti Vetan Yojana",
+      "hi": "श्रावणबाळ सेवा राज्य निवृत्ति वेतन योजना",
+      "mr": "श्रावणबाळ सेवा राज्य निवृत्तीवेतन योजना"
+    },
+    "authority": "Social Justice Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 18000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "age",
+        "op": "gte",
+        "value": 65
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 21000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "age_proof",
+      "income_certificate"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Tahsildar / Sanjay Gandhi Yojana cell"
+    },
+    "clause_text": "Persons aged 65 years and above who are residents of Maharashtra and whose family annual income does not exceed Rs. 21,000 are eligible for state pension.",
+    "source_url": "https://sjsa.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-SGNAY",
+    "name": {
+      "en": "Sanjay Gandhi Niradhar Anudan Yojana",
+      "hi": "संजय गांधी निराधार अनुदान योजना",
+      "mr": "संजय गांधी निराधार अनुदान योजना"
+    },
+    "authority": "Social Justice Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 18000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "age",
+        "op": "lt",
+        "value": 65
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 21000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "income_certificate"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Tahsildar office"
+    },
+    "clause_text": "Destitute persons below 65 years of age, including widows, orphans and persons with disability, whose family annual income does not exceed Rs. 21,000, are eligible for monthly assistance.",
+    "source_url": "https://sjsa.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-MJPJAY",
+    "name": {
+      "en": "Mahatma Jyotirao Phule Jan Arogya Yojana",
+      "hi": "महात्मा ज्योतिराव फुले जन आरोग्य योजना",
+      "mr": "महात्मा ज्योतिराव फुले जन आरोग्य योजना"
+    },
+    "authority": "Public Health Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "insurance",
+      "amount_inr_per_year": 500000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "ration_card_type",
+        "op": "in",
+        "value": [
+          "AAY",
+          "PHH",
+          "NPHH"
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "ration_card"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Any empanelled hospital, Arogyamitra desk"
+    },
+    "clause_text": "All families holding a ration card issued in Maharashtra are entitled to cashless treatment cover for listed procedures at empanelled hospitals.",
+    "source_url": "https://www.jeevandayee.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-RAMAI-AWAS",
+    "name": {
+      "en": "Ramai Awas Yojana (housing)",
+      "hi": "रमाई आवास योजना",
+      "mr": "रमाई आवास योजना"
+    },
+    "authority": "Social Justice Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "one_time_inr": 132000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "category",
+        "op": "in",
+        "value": [
+          "SC",
+          "SBC"
+        ]
+      },
+      {
+        "attr": "owns_pucca_house",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lt",
+        "value": 300000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "caste_certificate",
+      "income_certificate"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Gram Panchayat / Municipal body"
+    },
+    "clause_text": "Families belonging to the Scheduled Caste and Neo-Buddhist categories in Maharashtra who do not own a pucca house are eligible for housing assistance.",
+    "source_url": "https://sjsa.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-SHABARI-GHARKUL",
+    "name": {
+      "en": "Shabari Adivasi Gharkul Yojana",
+      "hi": "शबरी आदिवासी घरकुल योजना",
+      "mr": "शबरी आदिवासी घरकुल योजना"
+    },
+    "authority": "Tribal Development Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "one_time_inr": 132000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "category",
+        "op": "eq",
+        "value": "ST"
+      },
+      {
+        "attr": "owns_pucca_house",
+        "op": "eq",
+        "value": false
+      },
+      {
+        "attr": "residence",
+        "op": "eq",
+        "value": "rural"
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "caste_certificate",
+      "income_certificate"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "Integrated Tribal Development Project office"
+    },
+    "clause_text": "Scheduled Tribe families residing in rural Maharashtra who are houseless or living in a kutcha house are eligible for assistance to construct a pucca house.",
+    "source_url": "https://tribal.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-BIRSA-MUNDA",
+    "name": {
+      "en": "Birsa Munda Krishi Kranti Yojana",
+      "hi": "बिरसा मुंडा कृषि क्रांति योजना",
+      "mr": "बिरसा मुंडा कृषी क्रांती योजना"
+    },
+    "authority": "Agriculture Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "subsidy",
+      "one_time_inr": 100000,
+      "note": "Well, pump set and pipeline subsidy"
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "category",
+        "op": "eq",
+        "value": "ST"
+      },
+      {
+        "attr": "owns_agri_land",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "landholding_ha",
+        "op": "lte",
+        "value": 6
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 150000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "caste_certificate",
+      "land_record_7_12",
+      "income_certificate"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://mahadbt.maharashtra.gov.in",
+      "office": "Taluka Agriculture Officer"
+    },
+    "clause_text": "Scheduled Tribe farmers in Maharashtra holding not less than 0.20 hectare and not more than 6 hectare of land, with annual income up to Rs. 1,50,000, are eligible for irrigation assistance.",
+    "source_url": "https://mahadbt.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-EBC-SHAHU",
+    "name": {
+      "en": "Rajarshi Shahu Maharaj Fee Waiver (EBC)",
+      "hi": "राजर्षी शाहू महाराज शिक्षण शुल्क शिष्यवृत्ती",
+      "mr": "राजर्षी छत्रपती शाहू महाराज शिक्षण शुल्क शिष्यवृत्ती"
+    },
+    "authority": "Higher & Technical Education Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "subsidy",
+      "amount_inr_per_year": 50000,
+      "note": "Up to 50% tuition and exam fee waiver"
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "is_student",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "education_level",
+        "op": "in",
+        "value": [
+          "higher_secondary",
+          "graduate"
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 800000
+      },
+      {
+        "attr": "category",
+        "op": "in",
+        "value": [
+          "GENERAL",
+          "OBC",
+          "VJNT",
+          "SBC"
+        ]
+      }
+    ],
+    "documents_required": [
+      "domicile",
+      "income_certificate",
+      "marksheet",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://mahadbt.maharashtra.gov.in",
+      "office": "College scholarship cell"
+    },
+    "clause_text": "Students from economically weaker sections domiciled in Maharashtra, whose family annual income does not exceed Rs. 8,00,000, are eligible for a waiver of tuition and examination fees in professional courses.",
+    "source_url": "https://mahadbt.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-PANJABRAO",
+    "name": {
+      "en": "Dr. Panjabrao Deshmukh Hostel Maintenance Allowance",
+      "hi": "डॉ. पंजाबराव देशमुख वसतिगृह निर्वाह भत्ता",
+      "mr": "डॉ. पंजाबराव देशमुख वसतिगृह निर्वाह भत्ता"
+    },
+    "authority": "Higher & Technical Education Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "amount_inr_per_year": 30000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "is_student",
+        "op": "eq",
+        "value": true
+      },
+      {
+        "attr": "education_level",
+        "op": "in",
+        "value": [
+          "higher_secondary",
+          "graduate"
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 800000
+      }
+    ],
+    "documents_required": [
+      "domicile",
+      "income_certificate",
+      "marksheet",
+      "hostel_certificate"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://mahadbt.maharashtra.gov.in",
+      "office": "College scholarship cell"
+    },
+    "clause_text": "Students domiciled in Maharashtra who are staying in a hostel away from their home town and whose family income does not exceed Rs. 8,00,000 are eligible for a maintenance allowance.",
+    "source_url": "https://mahadbt.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-ANNASAHEB-PATIL",
+    "name": {
+      "en": "Annasaheb Patil interest-free loan subsidy",
+      "hi": "अण्णासाहेब पाटील ब्याज सब्सिडी योजना",
+      "mr": "अण्णासाहेब पाटील व्याज परतावा योजना"
+    },
+    "authority": "Annasaheb Patil Arthik Magas Vikas Mahamandal",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "subsidy",
+      "amount_inr_per_year": 45000,
+      "note": "Interest reimbursement on a business loan up to Rs 15 lakh"
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          50
+        ]
+      },
+      {
+        "attr": "occupation",
+        "op": "in",
+        "value": [
+          "self_employed",
+          "unemployed"
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 800000
+      },
+      {
+        "attr": "category",
+        "op": "in",
+        "value": [
+          "GENERAL",
+          "OBC",
+          "SBC",
+          "VJNT"
+        ]
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "income_certificate",
+      "project_report",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "online",
+      "url": "https://udyog.mahaswayam.gov.in",
+      "office": "District Mahamandal office"
+    },
+    "clause_text": "Applicants domiciled in Maharashtra, aged between 18 and 50 years, belonging to economically weaker sections and setting up their own enterprise, are eligible for reimbursement of interest on term loans.",
+    "source_url": "https://udyog.mahaswayam.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-KANYADAN",
+    "name": {
+      "en": "Shubh Mangal Samuhik Vivah (marriage assistance)",
+      "hi": "शुभ मंगल सामूहिक विवाह योजना",
+      "mr": "शुभमंगल सामूहिक विवाह योजना"
+    },
+    "authority": "Women & Child Development Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "cash",
+      "one_time_inr": 25000
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "gender",
+        "op": "eq",
+        "value": "female"
+      },
+      {
+        "attr": "age",
+        "op": "between",
+        "value": [
+          18,
+          30
+        ]
+      },
+      {
+        "attr": "annual_income_inr",
+        "op": "lte",
+        "value": 100000
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "age_proof",
+      "income_certificate"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "District Women & Child Development office"
+    },
+    "clause_text": "Financial assistance is provided for the marriage of daughters of families below the poverty line residing in Maharashtra, where the bride has completed 18 years of age.",
+    "source_url": "https://womenchild.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  },
+  {
+    "id": "MH-FISHER-KISAN",
+    "name": {
+      "en": "Matsya Vyavsay Vikas assistance for fishers",
+      "hi": "मत्स्य व्यवसाय विकास सहायता",
+      "mr": "मत्स्य व्यवसाय विकास अर्थसहाय्य"
+    },
+    "authority": "Fisheries Dept, Govt. of Maharashtra",
+    "level": "state",
+    "state": "MH",
+    "benefit": {
+      "type": "subsidy",
+      "one_time_inr": 40000,
+      "note": "Subsidy on nets, boat repair and ice boxes"
+    },
+    "criteria": [
+      {
+        "attr": "state",
+        "op": "eq",
+        "value": "MH"
+      },
+      {
+        "attr": "occupation",
+        "op": "eq",
+        "value": "fisher"
+      },
+      {
+        "attr": "age",
+        "op": "gte",
+        "value": 18
+      }
+    ],
+    "documents_required": [
+      "aadhaar",
+      "domicile",
+      "fisher_id",
+      "bank_passbook"
+    ],
+    "apply": {
+      "mode": "offline",
+      "office": "District Fisheries Office"
+    },
+    "clause_text": "Registered active fishers resident in Maharashtra are eligible for subsidy on fishing implements and craft maintenance.",
+    "source_url": "https://fisheries.maharashtra.gov.in",
+    "last_verified": "2026-08-01",
+    "verified": false
+  }
+]
