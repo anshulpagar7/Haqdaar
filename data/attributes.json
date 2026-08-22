@@ -1,0 +1,269 @@
+{
+  "state": {
+    "type": "enum",
+    "values": ["MH", "GJ", "KA", "MP", "RJ", "UP", "OTHER"],
+    "ask_cost": 1,
+    "question": {
+      "en": "Which state do you live in?",
+      "hi": "आप किस राज्य में रहते हैं?",
+      "mr": "तुम्ही कोणत्या राज्यात राहता?"
+    },
+    "labels": {
+      "MH": { "en": "Maharashtra", "hi": "महाराष्ट्र", "mr": "महाराष्ट्र" },
+      "GJ": { "en": "Gujarat", "hi": "गुजरात", "mr": "गुजरात" },
+      "KA": { "en": "Karnataka", "hi": "कर्नाटक", "mr": "कर्नाटक" },
+      "MP": { "en": "Madhya Pradesh", "hi": "मध्य प्रदेश", "mr": "मध्य प्रदेश" },
+      "RJ": { "en": "Rajasthan", "hi": "राजस्थान", "mr": "राजस्थान" },
+      "UP": { "en": "Uttar Pradesh", "hi": "उत्तर प्रदेश", "mr": "उत्तर प्रदेश" },
+      "OTHER": { "en": "Somewhere else", "hi": "कोई और राज्य", "mr": "इतर राज्य" }
+    },
+    "derivable_from": ["ration_card", "domicile", "aadhaar"],
+    "priors": { "MH": 3, "GJ": 1, "KA": 1, "MP": 1, "RJ": 1, "UP": 2, "OTHER": 2 }
+  },
+  "residence": {
+    "type": "enum",
+    "values": ["rural", "urban"],
+    "ask_cost": 1,
+    "question": {
+      "en": "Do you live in a village or a town?",
+      "hi": "आप गाँव में रहते हैं या शहर में?",
+      "mr": "तुम्ही गावात राहता की शहरात?"
+    },
+    "labels": {
+      "rural": { "en": "Village", "hi": "गाँव", "mr": "गाव" },
+      "urban": { "en": "Town or city", "hi": "शहर", "mr": "शहर" }
+    },
+    "priors": { "rural": 65, "urban": 35 }
+  },
+  "age": {
+    "type": "number",
+    "bands": [[0, 17], [18, 25], [26, 40], [41, 59], [60, 64], [65, 100]],
+    "ask_cost": 1,
+    "question": {
+      "en": "How old are you?",
+      "hi": "आपकी उम्र क्या है?",
+      "mr": "तुमचे वय किती आहे?"
+    },
+    "derivable_from": ["aadhaar", "school_certificate"]
+  },
+  "gender": {
+    "type": "enum",
+    "values": ["female", "male", "other"],
+    "ask_cost": 1,
+    "question": {
+      "en": "Are you male or female?",
+      "hi": "आप पुरुष हैं या महिला?",
+      "mr": "तुम्ही पुरुष आहात की महिला?"
+    },
+    "labels": {
+      "female": { "en": "Female", "hi": "महिला", "mr": "स्त्री" },
+      "male": { "en": "Male", "hi": "पुरुष", "mr": "पुरुष" },
+      "other": { "en": "Other", "hi": "अन्य", "mr": "इतर" }
+    },
+    "derivable_from": ["aadhaar", "ration_card"],
+    "priors": { "female": 49, "male": 50, "other": 1 }
+  },
+  "annual_income_inr": {
+    "type": "number",
+    "bands": [[0, 21000], [21001, 100000], [100001, 250000], [250001, 500000], [500001, 800000], [800001, 3000000]],
+    "ask_cost": 3,
+    "question": {
+      "en": "Roughly what does your household earn in a year?",
+      "hi": "आपके परिवार की सालाना आय लगभग कितनी है?",
+      "mr": "तुमच्या कुटुंबाचे वार्षिक उत्पन्न अंदाजे किती आहे?"
+    },
+    "derivable_from": ["income_certificate", "ration_card"],
+    "priors": { "10500": 8, "60500": 22, "175000": 30, "375000": 22, "650000": 12, "1900000": 6 }
+  },
+  "category": {
+    "type": "enum",
+    "values": ["SC", "ST", "OBC", "VJNT", "SBC", "GENERAL"],
+    "ask_cost": 2,
+    "question": {
+      "en": "What social category is on your certificate?",
+      "hi": "आपके प्रमाणपत्र पर कौन सी श्रेणी है?",
+      "mr": "तुमच्या दाखल्यावर कोणता प्रवर्ग आहे?"
+    },
+    "labels": {
+      "SC": { "en": "SC", "hi": "अनुसूचित जाति", "mr": "अनुसूचित जाती" },
+      "ST": { "en": "ST", "hi": "अनुसूचित जनजाति", "mr": "अनुसूचित जमाती" },
+      "OBC": { "en": "OBC", "hi": "अन्य पिछड़ा वर्ग", "mr": "इतर मागास वर्ग" },
+      "VJNT": { "en": "VJNT", "hi": "विमुक्त जाति", "mr": "विमुक्त जाती" },
+      "SBC": { "en": "SBC", "hi": "विशेष पिछड़ा वर्ग", "mr": "विशेष मागास प्रवर्ग" },
+      "GENERAL": { "en": "None of these / Open", "hi": "इनमें से कोई नहीं", "mr": "खुला प्रवर्ग" }
+    },
+    "derivable_from": ["caste_certificate"]
+  },
+  "ration_card_type": {
+    "type": "enum",
+    "values": ["AAY", "PHH", "NPHH", "none"],
+    "ask_cost": 1,
+    "question": {
+      "en": "What colour is your ration card?",
+      "hi": "आपका राशन कार्ड किस रंग का है?",
+      "mr": "तुमचे रेशन कार्ड कोणत्या रंगाचे आहे?"
+    },
+    "labels": {
+      "AAY": { "en": "Yellow (Antyodaya)", "hi": "पीला (अंत्योदय)", "mr": "पिवळे (अंत्योदय)" },
+      "PHH": { "en": "Saffron (priority)", "hi": "केसरिया (प्राथमिकता)", "mr": "केशरी (प्राधान्य)" },
+      "NPHH": { "en": "White", "hi": "सफ़ेद", "mr": "पांढरे" },
+      "none": { "en": "I don't have one", "hi": "मेरे पास नहीं है", "mr": "माझ्याकडे नाही" }
+    },
+    "derivable_from": ["ration_card"]
+  },
+  "occupation": {
+    "type": "enum",
+    "values": ["farmer", "labourer", "artisan", "student", "homemaker", "salaried", "self_employed", "fisher", "unemployed"],
+    "ask_cost": 2,
+    "question": {
+      "en": "What work do you mainly do?",
+      "hi": "आप मुख्य रूप से क्या काम करते हैं?",
+      "mr": "तुम्ही मुख्यतः कोणते काम करता?"
+    },
+    "labels": {
+      "farmer": { "en": "Farming", "hi": "खेती", "mr": "शेती" },
+      "labourer": { "en": "Daily wage work", "hi": "मज़दूरी", "mr": "मजुरी" },
+      "artisan": { "en": "Craft or trade", "hi": "कारीगरी", "mr": "कारागिरी" },
+      "student": { "en": "Studying", "hi": "पढ़ाई", "mr": "शिक्षण" },
+      "homemaker": { "en": "Housework", "hi": "गृहकार्य", "mr": "गृहकार्य" },
+      "salaried": { "en": "Salaried job", "hi": "नौकरी", "mr": "नोकरी" },
+      "self_employed": { "en": "Own small business", "hi": "अपना काम", "mr": "स्वतःचा व्यवसाय" },
+      "fisher": { "en": "Fishing", "hi": "मछली पालन", "mr": "मासेमारी" },
+      "unemployed": { "en": "Not working now", "hi": "अभी काम नहीं", "mr": "सध्या काम नाही" }
+    }
+  },
+  "is_student": {
+    "type": "boolean",
+    "ask_cost": 1,
+    "question": {
+      "en": "Is anyone in the house currently studying?",
+      "hi": "क्या घर में कोई पढ़ाई कर रहा है?",
+      "mr": "घरात कोणी सध्या शिकत आहे का?"
+    },
+    "derivable_from": ["school_certificate", "marksheet"]
+  },
+  "education_level": {
+    "type": "enum",
+    "values": ["none", "primary", "secondary", "higher_secondary", "graduate"],
+    "ask_cost": 2,
+    "question": {
+      "en": "Up to which class have you studied?",
+      "hi": "आपने किस कक्षा तक पढ़ाई की है?",
+      "mr": "तुम्ही कोणत्या इयत्तेपर्यंत शिकला आहात?"
+    },
+    "labels": {
+      "none": { "en": "Did not attend school", "hi": "स्कूल नहीं गए", "mr": "शाळेत गेलो नाही" },
+      "primary": { "en": "Up to class 7", "hi": "कक्षा 7 तक", "mr": "इयत्ता ७ पर्यंत" },
+      "secondary": { "en": "Class 10", "hi": "कक्षा 10", "mr": "इयत्ता १०" },
+      "higher_secondary": { "en": "Class 12", "hi": "कक्षा 12", "mr": "इयत्ता १२" },
+      "graduate": { "en": "College", "hi": "कॉलेज", "mr": "महाविद्यालय" }
+    },
+    "derivable_from": ["marksheet"]
+  },
+  "owns_agri_land": {
+    "type": "boolean",
+    "ask_cost": 1,
+    "question": {
+      "en": "Does your family own farmland?",
+      "hi": "क्या आपके परिवार के पास खेती की ज़मीन है?",
+      "mr": "तुमच्या कुटुंबाकडे शेतजमीन आहे का?"
+    },
+    "derivable_from": ["land_record_7_12"],
+    "priors": { "true": 45, "false": 55 }
+  },
+  "landholding_ha": {
+    "type": "number",
+    "bands": [[0, 1], [1, 2], [2, 5], [5, 50]],
+    "ask_cost": 3,
+    "question": {
+      "en": "How much land do you hold, in hectares?",
+      "hi": "आपके पास कितनी ज़मीन है (हेक्टेयर में)?",
+      "mr": "तुमच्याकडे किती जमीन आहे (हेक्टरमध्ये)?"
+    },
+    "derivable_from": ["land_record_7_12"]
+  },
+  "has_disability_cert": {
+    "type": "boolean",
+    "ask_cost": 1,
+    "question": {
+      "en": "Does anyone in the house have a disability certificate?",
+      "hi": "क्या घर में किसी के पास दिव्यांग प्रमाणपत्र है?",
+      "mr": "घरात कोणाकडे दिव्यांग प्रमाणपत्र आहे का?"
+    },
+    "derivable_from": ["disability_certificate"],
+    "priors": { "true": 8, "false": 92 }
+  },
+  "disability_pct": {
+    "type": "number",
+    "bands": [[0, 39], [40, 79], [80, 100]],
+    "ask_cost": 2,
+    "question": {
+      "en": "What percentage is written on the disability certificate?",
+      "hi": "प्रमाणपत्र पर कितने प्रतिशत लिखा है?",
+      "mr": "प्रमाणपत्रावर किती टक्के लिहिले आहे?"
+    },
+    "derivable_from": ["disability_certificate"]
+  },
+  "is_widow": {
+    "type": "boolean",
+    "ask_cost": 2,
+    "question": {
+      "en": "Is the applicant a widow?",
+      "hi": "क्या आवेदक विधवा हैं?",
+      "mr": "अर्जदार विधवा आहेत का?"
+    },
+    "priors": { "true": 10, "false": 90 }
+  },
+  "owns_pucca_house": {
+    "type": "boolean",
+    "ask_cost": 1,
+    "question": {
+      "en": "Do you own a permanent (pucca) house?",
+      "hi": "क्या आपका अपना पक्का मकान है?",
+      "mr": "तुमचे स्वतःचे पक्के घर आहे का?"
+    },
+    "priors": { "true": 55, "false": 45 }
+  },
+  "has_bank_account": {
+    "type": "boolean",
+    "ask_cost": 1,
+    "question": {
+      "en": "Do you have a bank account?",
+      "hi": "क्या आपका बैंक खाता है?",
+      "mr": "तुमचे बँक खाते आहे का?"
+    },
+    "derivable_from": ["bank_passbook"],
+    "priors": { "true": 80, "false": 20 }
+  },
+  "has_lpg_connection": {
+    "type": "boolean",
+    "ask_cost": 1,
+    "question": {
+      "en": "Do you already have a gas cylinder connection?",
+      "hi": "क्या आपके पास गैस कनेक्शन है?",
+      "mr": "तुमच्याकडे गॅस जोडणी आहे का?"
+    },
+    "priors": { "true": 70, "false": 30 }
+  },
+  "works_unorganised": {
+    "type": "boolean",
+    "ask_cost": 2,
+    "question": {
+      "en": "Is your work outside any company or government job?",
+      "hi": "क्या आपका काम किसी कंपनी या सरकारी नौकरी से बाहर है?",
+      "mr": "तुमचे काम कंपनी किंवा सरकारी नोकरीबाहेरचे आहे का?"
+    },
+    "priors": { "true": 80, "false": 20 }
+  },
+  "household_size": {
+    "type": "number",
+    "bands": [[1, 2], [3, 4], [5, 6], [7, 15]],
+    "ask_cost": 1,
+    "question": {
+      "en": "How many people live in your house?",
+      "hi": "आपके घर में कितने लोग रहते हैं?",
+      "mr": "तुमच्या घरात किती माणसे राहतात?"
+    },
+    "derivable_from": ["ration_card"]
+  }
+}
