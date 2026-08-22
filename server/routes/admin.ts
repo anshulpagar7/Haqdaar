@@ -9,6 +9,10 @@ adminRouter.use((req, res, next) => {
   const key = process.env.ADMIN_KEY;
   if (!key) return res.status(503).json({ error: "ADMIN_KEY is not configured on this server." });
   if (req.header("x-admin-key") !== key) return res.status(401).json({ error: "Unauthorised" });
+  if (!db)
+    return res.status(503).json({
+      error: "Storage is read-only: SQLite is unavailable, so the catalogue cannot be edited.",
+    });
   next();
 });
 
