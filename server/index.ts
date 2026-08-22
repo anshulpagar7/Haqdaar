@@ -3,8 +3,9 @@ import express from "express";
 import cors from "cors";
 import { extract } from "./extract";
 import { transcribe } from "./asr";
-import { migrate, sweepExpired, db } from "./db/index";
+import { migrate, sweepExpired, db, dbError, storage, DB_FILE } from "./db/index";
 import { seed } from "./db/seed";
+import { catalogueCounts } from "./catalogue";
 import { schemesRouter } from "./routes/schemes";
 import { applicationsRouter } from "./routes/applications";
 import { adminRouter } from "./routes/admin";
@@ -37,18 +38,41 @@ app.use("/api", (req, res, next) => {
   next();
 });
 
-/* boot: migrate, seed if empty, sweep expired saves */
-migrate();
-const count = (db.prepare("SELECT COUNT(*) c FROM scheme").get() as any).c as number;
-if (count === 0) seed(false);
-sweepExpired();
-setInterval(sweepExpired, 60 * 60 * 1000).unref();
+/* Boot: migrate, seed if empty, sweep expired saves.
+ * Nothing here is allowed to stop the server from listening. A database that
+ * will not open is a degraded mode, not a crash — the catalogue is still
+ * readable from data/*.json, and /api/health reports what went wrong. */
+let bootError: string | null = dbError
+  ? `SQLite unavailable (${dbError.message.split("\n")[0]}) — try: npm rebuild better-sqlite3`
+  : null;
+
+try {
+  if (db) {
+    migrate();
+    const count = (db.prepare("SELECT COUNT(*) c FROM scheme").get() as any).c as number;
+    if (count === 0) seed(false);
+    sweepExpired();
+    setInterval(sweepExpired, 60 * 60 * 1000).unref();
+  }
+} catch (e: any) {
+  bootError = `Database boot failed — ${e.message}`;
+  console.error(`\n  ! ${bootError}`);
+  console.error("    Serving the catalogue read-only from data/*.json. Try: npm run db:reset\n");
+}
 
 const mock = { extract: !process.env.GEMINI_API_KEY, asr: !process.env.GROQ_API_KEY };
 
 app.get("/api/health", (_req, res) => {
-  const c = db.prepare("SELECT COUNT(*) c FROM scheme WHERE active = 1").get() as any;
-  res.json({ ok: true, mock, schemes: c.c, db: process.env.DATABASE_FILE || "data/haqdaar.db" });
+  let schemes = 0;
+  try { schemes = catalogueCounts().schemes; } catch { /* reported below */ }
+  res.json({
+    ok: true,
+    mock,
+    schemes,
+    storage: bootError ? "json" : storage,
+    db: DB_FILE,
+    ...(bootError ? { warning: bootError } : {}),
+  });
 });
 
 app.use("/api", schemesRouter);
@@ -74,11 +98,35 @@ app.post("/api/asr", async (req, res) => {
 
 app.use("/api", (_req, res) => res.status(404).json({ error: "No such endpoint" }));
 
-app.listen(PORT, () => {
-  const c = db.prepare("SELECT COUNT(*) c FROM scheme WHERE active = 1").get() as any;
-  console.log(`\n  haqdaar api    http://localhost:${PORT}`);
-  console.log(`  database       ${process.env.DATABASE_FILE || "data/haqdaar.db"} · ${c.c} schemes`);
+/* Bind 0.0.0.0 so the port answers on both 127.0.0.1 and ::1. Node's happy-eyeballs
+ * resolver tries both for "localhost", and a v4-only bind is the usual cause of
+ * AggregateError [ECONNREFUSED] behind a dev proxy on Windows. */
+const server = app.listen(PORT, "0.0.0.0", () => {
+  const n = (() => { try { return catalogueCounts().schemes; } catch { return 0; } })();
+  console.log(`\n  haqdaar api    http://127.0.0.1:${PORT}`);
+  console.log(`  storage        ${bootError ? "data/*.json (read-only)" : `${storage} · ${DB_FILE}`} · ${n} schemes`);
+  if (bootError) console.log(`  warning        ${bootError}`);
   console.log(`  extraction     ${mock.extract ? "MOCK (no GEMINI_API_KEY)" : "live · Gemini"}`);
   console.log(`  speech         ${mock.asr ? "MOCK (no GROQ_API_KEY)" : "live · Groq Whisper"}`);
   console.log(`  admin writes   ${process.env.ADMIN_KEY ? "enabled" : "disabled (set ADMIN_KEY)"}\n`);
+});
+
+server.on("error", (e: any) => {
+  if (e.code === "EADDRINUSE") {
+    console.error(`\n  ! Port ${PORT} is already in use — another copy of the API is running.`);
+    console.error(`    Windows:  netstat -ano | findstr :${PORT}   then  taskkill /PID <pid> /F`);
+    console.error(`    macOS/Linux:  lsof -ti:${PORT} | xargs kill\n`);
+  } else {
+    console.error(`\n  ! The API could not start: ${e.message}\n`);
+  }
+  process.exit(1);
+});
+
+/* A crash after boot should say so loudly rather than dying silently behind
+ * concurrently's output multiplexing. */
+process.on("uncaughtException", (e) => {
+  console.error("\n  ! Uncaught error in the API process:", e);
+});
+process.on("unhandledRejection", (e) => {
+  console.error("\n  ! Unhandled promise rejection in the API process:", e);
 });
