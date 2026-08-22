@@ -49,3 +49,31 @@ function toBase64(f: Blob): Promise<string> {
     r.readAsDataURL(f);
   });
 }
+
+export interface Persona {
+  id: string; name: string; tagline: string; story: string;
+  portrait: string; document: string; document_type: string;
+  document_label: string; accent: string;
+  fields: Record<string, string | number | boolean>;
+  confidence: Record<string, number>;
+  masked_ids: string[];
+}
+
+export async function loadPersonas(): Promise<Persona[]> {
+  const res = await fetch("/api/personas");
+  if (!res.ok) throw new Error("Could not load the specimen documents.");
+  return res.json();
+}
+
+export async function saveApplication(body: {
+  lang: string; profile: Record<string, unknown>; docsHeld: string[];
+  eligibleIds: string[]; totalValue: number; questionsAsked: number;
+}): Promise<{ reference: string; expires_in_days: number }> {
+  const res = await fetch("/api/applications", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(body),
+  });
+  if (!res.ok) throw new Error("Could not save the application.");
+  return res.json();
+}
