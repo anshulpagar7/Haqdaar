@@ -24,6 +24,10 @@ const SENSITIVE = /aadhaar|account|uid|card_no|mobile|phone/i;
 const scrub = (p: Record<string, unknown>) =>
   Object.fromEntries(Object.entries(p).filter(([k]) => !SENSITIVE.test(k)));
 
+/** Session-lifetime store used when SQLite is unavailable, so the save-and-resume
+ *  flow still demos. Nothing is written to disk in this mode. */
+const memory = new Map<string, any>();
+
 applicationsRouter.post("/applications", (req, res) => {
   const parsed = Body.safeParse(req.body);
   if (!parsed.success)
@@ -31,11 +35,22 @@ applicationsRouter.post("/applications", (req, res) => {
 
   const { lang, profile, docsHeld, eligibleIds, totalValue, questionsAsked } = parsed.data;
   const reference = makeRef();
+  const clean = scrub(profile);
+
+  if (!db) {
+    memory.set(reference, {
+      reference,
+      created_at: new Date().toISOString(),
+      expires_at: new Date(Date.now() + 30 * 864e5).toISOString(),
+      lang, profile: clean, docsHeld, eligibleIds, totalValue,
+    });
+    return res.status(201).json({ reference, expires_in_days: 30, persisted: false });
+  }
 
   db.prepare(`
     INSERT INTO application (reference, expires_at, lang, profile_json, docs_json, eligible_json, total_value)
     VALUES (?, datetime('now','+30 days'), ?, ?, ?, ?, ?)
-  `).run(reference, lang, JSON.stringify(scrub(profile)),
+  `).run(reference, lang, JSON.stringify(clean),
          JSON.stringify(docsHeld), JSON.stringify(eligibleIds), totalValue);
 
   db.prepare("INSERT INTO event (kind, questions, matched, total_value) VALUES ('application', ?, ?, ?)")
@@ -43,13 +58,21 @@ applicationsRouter.post("/applications", (req, res) => {
   const ev = db.prepare("INSERT INTO event (kind, scheme_id) VALUES ('match', ?)");
   for (const id of eligibleIds) ev.run(id);
 
-  res.status(201).json({ reference, expires_in_days: 30 });
+  res.status(201).json({ reference, expires_in_days: 30, persisted: true });
 });
 
 applicationsRouter.get("/applications/:reference", (req, res) => {
+  const ref = req.params.reference.toUpperCase();
+
+  if (!db) {
+    const m = memory.get(ref);
+    if (!m) return res.status(404).json({ error: "Not found, or the saved application has expired." });
+    return res.json(m);
+  }
+
   const r: any = db.prepare(
     "SELECT * FROM application WHERE reference = ? AND expires_at > datetime('now')"
-  ).get(req.params.reference.toUpperCase());
+  ).get(ref);
   if (!r) return res.status(404).json({ error: "Not found, or the saved application has expired." });
 
   res.json({
