@@ -1,9 +1,9 @@
 import type { Lang } from "./engine/types";
 
 export const LANGS: { code: Lang; label: string }[] = [
-  { code: "mr", label: "मराठी" },
+  { code: "en", label: "English" },
   { code: "hi", label: "हिंदी" },
-  { code: "en", label: "EN" },
+  { code: "mr", label: "मराठी" },
 ];
 
 type Dict = Record<Lang, string>;
@@ -56,6 +56,40 @@ export const T = {
   startOver: t("Start over", "फिर से शुरू करें", "पुन्हा सुरू करा"),
   noneFound: t("No scheme matched.", "कोई योजना नहीं मिली।", "कोणतीही योजना जुळली नाही."),
   reading: t("Reading your document…", "आपका कागज़ पढ़ा जा रहा है…", "तुमचा कागद वाचला जात आहे…"),
+  // — added for the cockpit rebuild —
+  yourProfile: t("Your profile", "आपकी जानकारी", "तुमची माहिती"),
+  liveResults: t("Live results", "तत्काल परिणाम", "थेट निकाल"),
+  confirmed: t("confirmed", "पक्की", "निश्चित"),
+  stillOpen: t("still open", "अभी संभव", "अजून शक्य"),
+  moreStillOpen: t("more still in play", "और संभव हैं", "आणखी शक्य आहेत"),
+  keepGoing: t("Answer a question or two more and the first confirmed schemes will appear here.",
+               "एक-दो सवाल और, फिर पक्की योजनाएँ यहाँ दिखेंगी।",
+               "आणखी एक-दोन प्रश्न, मग निश्चित योजना इथे दिसतील."),
+  yourResult: t("Your result", "आपका परिणाम", "तुमचा निकाल"),
+  listening: t("Listening…", "सुन रहे हैं…", "ऐकत आहोत…"),
+  heard: t("heard:", "सुना:", "ऐकले:"),
+  speakAria: t("Answer by speaking", "बोलकर उत्तर दें", "बोलून उत्तर द्या"),
+  close: t("Close", "बंद करें", "बंद करा"),
+  notVerified: t("not yet verified against the notification",
+                 "अधिसूचना से अभी मिलान नहीं", "अधिसूचनेशी अद्याप पडताळणी नाही"),
+  whyThis: t("Chosen because it should rule out {g} of the {c} schemes still in play — the best return for the effort of one question.",
+             "यह सवाल {c} में से लगभग {g} योजनाएँ हटा देगा — एक सवाल में सबसे ज़्यादा फ़ायदा।",
+             "हा प्रश्न {c} पैकी सुमारे {g} योजना वगळेल — एका प्रश्नात सर्वाधिक फायदा."),
+  auditNote: t("Tap any scheme to see the exact clause it satisfied. Every result was decided by a deterministic rule engine — no part of it was written by a language model.",
+               "किसी भी योजना पर टैप करें और वह नियम देखें जो पूरा हुआ। हर परिणाम नियम-इंजन ने तय किया है।",
+               "कोणत्याही योजनेवर टॅप करा आणि पूर्ण झालेला नियम पाहा. प्रत्येक निकाल नियम-इंजिनने ठरवला आहे."),
+  desktop: t("Desktop", "डेस्कटॉप", "डेस्कटॉप"),
+  mobile: t("Mobile", "मोबाइल", "मोबाइल"),
+  begin: t("Begin", "शुरू करें", "सुरुवात करा"),
+  heroLead: t("Photograph the documents already in your pocket. Answer about five spoken questions. See every government scheme you are entitled to — with the official clause cited and the form filled in.",
+              "जेब में पड़े कागज़ों की फ़ोटो लीजिए, पाँच सवालों के जवाब दीजिए, और हर वह योजना देखिए जिसके आप हक़दार हैं।",
+              "खिशातील कागदपत्रांचा फोटो काढा, पाच प्रश्नांची उत्तरे द्या, आणि तुम्ही हक्कदार असलेली प्रत्येक योजना पाहा."),
+  schemesLoaded: t("schemes loaded", "योजनाएँ लोड हुईं", "योजना लोड झाल्या"),
+  attributes: t("attributes", "मानदंड", "निकष"),
+  engineNote: t("Deterministic solver · every match cites its official clause",
+                "नियम-इंजन · हर मिलान अपना सरकारी नियम बताता है",
+                "नियम-इंजिन · प्रत्येक जुळणी तिचा अधिकृत नियम दाखवते"),
+
 };
 
 export const tr = (d: Dict, lang: Lang) => d[lang] ?? d.en;
