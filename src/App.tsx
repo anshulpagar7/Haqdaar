@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useRef, useState } from "react";
-import Capture from "./components/Capture";
 import Counter from "./components/Counter";
 import Documents from "./components/Documents";
 import Icon from "./components/Icon";
+import Logo from "./components/Logo";
 import ScrollStory from "./components/ScrollStory";
 import LiveList from "./components/LiveList";
 import Question from "./components/Question";
@@ -38,6 +38,21 @@ export default function App() {
   const [sheet, setSheet] = useState<Scheme | null>(null);
   const [error, setError] = useState<string | null>(null);
   const centre = useRef<HTMLDivElement>(null);
+  const hdr = useRef<HTMLElement>(null);
+
+  /* The header floats over the story rather than pushing it down, so the scene
+   * runs to the very top of the window. Its height changes when the toolbar
+   * wraps on a narrow screen, so it is measured rather than guessed. */
+  useEffect(() => {
+    const el = hdr.current;
+    if (!el) return;
+    const set = () =>
+      document.documentElement.style.setProperty("--hdr-h", `${el.offsetHeight}px`);
+    set();
+    const ro = new ResizeObserver(set);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
 
   useEffect(() => {
     loadData().then(({ schemes, attributes }) => { setSchemes(schemes); setRegistry(attributes); })
@@ -45,8 +60,12 @@ export default function App() {
     health().then((h) => setMock(h.mock)).catch(() => {});
   }, []);
 
-  useEffect(() => { centre.current?.scrollTo({ top: 0, behavior: "smooth" }); }, [asked, stage]);
-  useEffect(() => { window.scrollTo({ top: 0, behavior: "smooth" }); }, [stage]);
+  /* Each new question starts at the top of the page, not wherever the last
+   * answer button happened to leave the scroll position. */
+  useEffect(() => {
+    centre.current?.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, [asked, stage]);
 
   const total = schemes.length;
   const { eligible, candidates } = useMemo(
@@ -82,23 +101,25 @@ export default function App() {
     setTrail([]); setAsked(0); setSheet(null); setStage("landing");
   }
 
-  const Viz = (
+  const Viz = (h: number) => (
     <SchemeField total={total} living={stage === "landing" ? total : living}
-                 eligible={stage === "landing" ? 0 : eligible.length}
-                 height={mode === "desktop" ? 340 : 220} />
+                 eligible={stage === "landing" ? 0 : eligible.length} height={h} />
   );
 
   const header = (
-    <header className="hdr">
+    <header className="hdr" ref={hdr}>
       <button className="logo" onClick={restart} style={{ background: "none", border: 0, cursor: "pointer", color: "inherit", padding: 0 }}>
-        <span className="mark">ह</span>HAQDAAR
+        <Logo size={30} />HAQDAAR
       </button>
+      {stage !== "landing" ? null : (
+        /* A direct child of the header, not of the tool cluster: on a phone the
+           header becomes a two-row grid and this needs to sit beside the logo
+           rather than wrap below with the toggles. */
+        <button className="hdr-cta btn btn-primary btn-sm" onClick={() => setStage("documents")}>
+          <Icon name="arrow" size={14} />Apply now
+        </button>
+      )}
       <div className="hdr-tools">
-        {stage !== "landing" ? null : (
-          <button className="btn btn-primary btn-sm" onClick={() => setStage("documents")}>
-            <Icon name="arrow" size={14} />Apply now
-          </button>
-        )}
         <div className="seg" role="group" aria-label="Language">
           {LANGS.map((l) => (
             <button key={l.code} aria-pressed={lang === l.code} onClick={() => setLang(l.code)}>
@@ -118,15 +139,11 @@ export default function App() {
     </header>
   );
 
-  const banner = (mock?.extract || mock?.asr) ? (
-    <div className="notice">
-      Demo mode — {mock.extract && "document reading"}{mock.extract && mock.asr && " and "}
-      {mock.asr && "speech"} is mocked. Specimen documents still work exactly as shown.
-    </div>
-  ) : null;
-
+  /* No global banner: it pushed the scene down the page and shouted at every
+     visitor about a detail that only matters where documents are read. The
+     same fact now sits inside the documents step, where it is actually true. */
   const docsPage = (
-    <Documents lang={lang} profile={profile} conf={conf} chosen={persona}
+    <Documents lang={lang} profile={profile} conf={conf} chosen={persona} mock={mock}
                onMerge={mergeExtraction} onChoose={setPersona} onNext={beginQuestions} />
   );
   const resultsPage = (
@@ -137,10 +154,9 @@ export default function App() {
   const wide = stage === "documents" || stage === "results";
 
   return (
-    <div className="app" data-mode={mode}>
+    <div className="app" data-mode={mode} data-stage={stage}>
       {header}
-      {banner}
-      {error && <div className="shell"><div className="pane"><div className="err">{error}</div></div></div>}
+      {error &&<div className="shell"><div className="pane"><div className="err">{error}</div></div></div>}
 
       {!error && stage === "landing" && (
         <main>
@@ -162,16 +178,15 @@ export default function App() {
               {stage === "results" && resultsPage}
             </div>
           ) : (
+            /* Left: the question, and nothing above it. Right: everything the
+               answer is changing — the field, the count, the surviving list. */
             <div className="cockpit">
-              <div className="col">
-                <Capture lang={lang} profile={profile} conf={conf} onMerge={mergeExtraction} compact />
-              </div>
               <div className="col" ref={centre}>
-                {Viz}
-                <Counter trail={trail.length ? trail : [total]} lang={lang} start={total} />
                 {q && <Question q={q} index={asked} lang={lang} onAnswer={answer} onSkip={skip} />}
               </div>
               <div className="col">
+                {Viz(150)}
+                <Counter trail={trail.length ? trail : [total]} lang={lang} start={total} />
                 <LiveList eligible={eligible} candidates={candidates} lang={lang}
                           onOpen={setSheet} docsHeld={docsHeld} />
               </div>
@@ -185,10 +200,13 @@ export default function App() {
           <div className="pane">
             {stage === "documents" && docsPage}
             {stage === "questions" && q && (
+              /* On a phone the question comes first — the visual proof of
+                 narrowing sits under it, one thumb-scroll away. */
               <>
-                {Viz}<div style={{ height: 12 }} />
-                <Counter trail={trail} lang={lang} start={total} /><div style={{ height: 12 }} />
                 <Question q={q} index={asked} lang={lang} onAnswer={answer} onSkip={skip} />
+                <div style={{ height: 12 }} />
+                <Counter trail={trail} lang={lang} start={total} /><div style={{ height: 12 }} />
+                {Viz(180)}
               </>
             )}
             {stage === "results" && resultsPage}
