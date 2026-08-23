@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import Icon from "./Icon";
 import { T, tr } from "../i18n";
-import { hasNativeSTT, interpret, listenNative, NO_WORDS, recordClip, say, stopSpeaking, YES_WORDS } from "../lib/speech";
+import { hasNativeSTT, interpret, listenNative, NO_WORDS, recordClip, say, stopSpeaking, voiceFor, YES_WORDS } from "../lib/speech";
 import { transcribe } from "../lib/api";
 import type { AttributeDef, Lang, NextQuestion, Value } from "../engine/types";
 
@@ -37,7 +37,17 @@ export default function Question({ q, index, lang, onAnswer, onSkip }: {
   const opts = options(q.def, lang);
   const text = q.def.question[lang] ?? q.def.question.en;
 
-  useEffect(() => { setHeard(null); say(text, lang); return stopSpeaking; }, [q.attr, lang]);
+  const [voice, setVoice] = useState<{ name: string; lang: string; substitute: boolean } | null>(null);
+
+  useEffect(() => {
+    setHeard(null);
+    let live = true;
+    /* say() waits for the browser to finish loading its voice list, so guard
+     * against the question changing while that is still in flight. */
+    (async () => { if (live) await say(text, lang); })();
+    voiceFor(lang).then((v) => { if (live) setVoice(v); });
+    return () => { live = false; stopSpeaking(); };
+  }, [q.attr, lang]);
 
   async function listen() {
     setListening(true); setHeard(null); stopSpeaking();
@@ -75,13 +85,24 @@ export default function Question({ q, index, lang, onAnswer, onSkip }: {
         </button>
       </div>
 
-      <button className="btn btn-ghost btn-block btn-sm" style={{ marginTop: 14 }}
-              disabled={listening} onClick={listen}
-              aria-label={tr(T.speakAria, lang)}>
-        {listening ? <><span className="spin" />{tr(T.listening, lang)}</>
-                   : <><Icon name="mic" size={16} />{tr(T.speak, lang)}</>}
-      </button>
+      <div className="voicebar">
+        <button className="btn btn-ghost btn-sm" onClick={() => say(text, lang)}
+                aria-label="Read the question aloud again">
+          <Icon name="speaker" size={16} />{tr(T.replay, lang)}
+        </button>
+        <button className="btn btn-ghost btn-sm" disabled={listening} onClick={listen}
+                aria-label={tr(T.speakAria, lang)}>
+          {listening ? <><span className="spin" />{tr(T.listening, lang)}</>
+                     : <><Icon name="mic" size={16} />{tr(T.speak, lang)}</>}
+        </button>
+      </div>
       {heard && <p className="tiny" style={{ marginTop: 8 }}>{tr(T.heard, lang)} “{heard}”</p>}
+      {voice?.substitute && (
+        <p className="tiny" style={{ marginTop: 8 }}>
+          <Icon name="info" size={12} /> No {lang === "mr" ? "Marathi" : "Hindi"} voice is installed
+          on this device — reading in {voice.name} ({voice.lang}).
+        </p>
+      )}
 
       <p className="tiny" style={{ marginTop: 16, borderTop: "1px solid var(--brd)", paddingTop: 12 }}>
         <Icon name="spark" size={13} />{" "}
