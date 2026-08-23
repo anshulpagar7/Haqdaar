@@ -69,6 +69,7 @@ export const T = {
   listening: t("Listening…", "सुन रहे हैं…", "ऐकत आहोत…"),
   heard: t("heard:", "सुना:", "ऐकले:"),
   speakAria: t("Answer by speaking", "बोलकर उत्तर दें", "बोलून उत्तर द्या"),
+  replay: t("hear it again", "फिर से सुनें", "पुन्हा ऐका"),
   close: t("Close", "बंद करें", "बंद करा"),
   notVerified: t("not yet verified against the notification",
                  "अधिसूचना से अभी मिलान नहीं", "अधिसूचनेशी अद्याप पडताळणी नाही"),
