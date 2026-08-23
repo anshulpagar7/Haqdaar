@@ -18,8 +18,9 @@ const show = (k: string, v: unknown) =>
   k === "annual_income_inr" ? "₹ " + Number(v).toLocaleString("en-IN")
   : typeof v === "boolean" ? (v ? "Yes" : "No") : String(v);
 
-export default function Documents({ lang, profile, conf, chosen, onMerge, onChoose, onNext }: {
+export default function Documents({ lang, profile, conf, chosen, mock, onMerge, onChoose, onNext }: {
   lang: Lang; profile: Profile; conf: Record<string, number>; chosen: Persona | null;
+  mock?: { extract: boolean; asr: boolean } | null;
   onMerge: (f: Profile, docType: string, c: Record<string, number>, ids?: string[]) => void;
   onChoose: (p: Persona | null) => void;
   onNext: () => void;
@@ -66,6 +67,14 @@ export default function Documents({ lang, profile, conf, chosen, onMerge, onChoo
         Pick one of the four specimen documents below to try it, or photograph your own.
         Every specimen is clearly marked — no real citizen's document is ever used.
       </p>
+
+      {(mock?.extract || mock?.asr) && (
+        <p className="tiny" style={{ marginTop: -4, marginBottom: 14 }}>
+          <Icon name="info" size={12} /> Demo mode — no model key is set, so{" "}
+          {mock.extract && "document reading"}{mock.extract && mock.asr && " and "}
+          {mock.asr && "speech"} replay a recorded result. Everything after this step is real.
+        </p>
+      )}
 
       {err && <div className="err" role="alert">{err}</div>}
 
