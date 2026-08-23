@@ -17,25 +17,34 @@ export default function Results({ eligible, profile, docsHeld, lang, asked, onRe
   const total = totalAnnualValue(eligible);
   const { missing } = documentGap(eligible, docsHeld);
 
-  async function download() {
-    setBusy(true);
-    try {
-      const blob = await buildApplicationPdf(eligible, profile, missing);
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url; a.download = "haqdaar-application.pdf"; a.click();
-      URL.revokeObjectURL(url);
-    } finally { setBusy(false); }
-  }
-
-  async function save() {
+  async function save(): Promise<string | null> {
     try {
       const r = await saveApplication({
         lang, profile, docsHeld, eligibleIds: eligible.map((s) => s.id),
         totalValue: total, questionsAsked: asked,
       });
       setRef(r.reference);
-    } catch { /* the result is still on screen either way */ }
+      return r.reference;
+    } catch { return null; }   /* the result is still on screen either way */
+  }
+
+  async function download() {
+    setBusy(true);
+    try {
+      /* Get the reference first so the printed sheet carries the same code the
+       * officer can look up. If the API is offline the sheet prints without it. */
+      const reference = ref ?? (await save());
+      const blob = await buildApplicationPdf(eligible, profile, missing, {
+        reference, asked, docsHeld, lang,
+      });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement("a");
+      const stamp = new Date().toISOString().slice(0, 10);
+      a.href = url;
+      a.download = `haqdaar-${reference ?? "application"}-${stamp}.pdf`;
+      a.click();
+      URL.revokeObjectURL(url);
+    } finally { setBusy(false); }
   }
 
   return (
