@@ -29,6 +29,8 @@ export default function Documents({ lang, profile, conf, chosen, mock, onMerge, 
   const [busy, setBusy] = useState(false);
   const [reading, setReading] = useState(false);
   const [err, setErr] = useState<string | null>(null);
+  const [own, setOwn] = useState<{ url: string; name: string } | null>(null);
+  const [simulated, setSimulated] = useState(false);
   const input = useRef<HTMLInputElement>(null);
 
   useEffect(() => { loadPersonas().then(setPersonas).catch(() => {}); }, []);
@@ -49,8 +51,13 @@ export default function Documents({ lang, profile, conf, chosen, mock, onMerge, 
     const f = e.target.files?.[0];
     if (!f) return;
     setBusy(true); setErr(null); onChoose(null);
+    /* Show the citizen the page they just handed over, next to what was read
+       off it. Without this the upload path gives back fields with no visible
+       source, which is exactly the thing this product refuses to do. */
+    setOwn((prev) => { if (prev) URL.revokeObjectURL(prev.url); return { url: URL.createObjectURL(f), name: f.name }; });
     try {
       const r = await extractDocument(f);
+      setSimulated(!!r.mock);
       onMerge(r.fields as Profile, r.doc_type, r.confidence, r.masked_ids);
     } catch (e: any) { setErr(e.message || "Could not read that image."); }
     finally { setBusy(false); if (input.current) input.current.value = ""; }
@@ -109,6 +116,21 @@ export default function Documents({ lang, profile, conf, chosen, mock, onMerge, 
             <span className="stamp">SPECIMEN</span>
             <img src={chosen.document} alt={`${chosen.document_label} for ${chosen.name}`} />
           </div>
+        </div>
+      )}
+
+      {!chosen && own && (
+        <div style={{ marginTop: 18 }}>
+          <h4 className="eyebrow">The document being read · yours</h4>
+          <div className="docshot">
+            <img src={own.url} alt={`The document you uploaded: ${own.name}`} />
+          </div>
+          {simulated && (
+            <p className="tiny" style={{ marginTop: 8 }}>
+              <Icon name="info" size={12} /> Simulated read — no <code>GEMINI_API_KEY</code> is set,
+              so these fields are a recorded sample rather than this image.
+            </p>
+          )}
         </div>
       )}
 
