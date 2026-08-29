@@ -16,7 +16,9 @@
     "db:seed": "tsx server/db/seed.ts",
     "db:reset": "node -e \"require('fs').rmSync('data/haqdaar.db',{force:true});require('fs').rmSync('data/haqdaar.db-wal',{force:true});require('fs').rmSync('data/haqdaar.db-shm',{force:true})\" && npm run db:seed",
     "setup": "npm install && npm run db:seed",
-    "doctor": "tsx scripts/doctor.ts"
+    "doctor": "tsx scripts/doctor.ts",
+    "start": "tsx server/index.ts",
+    "serve": "npm run build && tsx server/index.ts"
   },
   "dependencies": {
     "better-sqlite3": "^11.10.0",
@@ -43,5 +45,8 @@
     "typescript": "^5.5.4",
     "vite": "^5.4.0",
     "vitest": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=20"
   }
 }
