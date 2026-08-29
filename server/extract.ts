@@ -2,7 +2,9 @@
  *  Falls back to a deterministic mock when GEMINI_API_KEY is absent, so the
  *  whole app is demoable with no keys and no network. */
 
-const MODEL = process.env.GEMINI_MODEL || "gemini-2.5-flash";
+const MODEL = process.env.GEMINI_MODEL || "gemini-3.6-flash";
+/** Tried in order if the configured model 404s and the error names no successor. */
+const FALLBACK_MODELS = ["gemini-3.6-flash", "gemini-3.7-flash", "gemini-flash-latest"];
 
 const PROMPT = `You are reading an Indian government identity or welfare document.
 Extract ONLY what is clearly visible. Never guess. Never invent a value.
@@ -60,7 +62,6 @@ export async function extract(imageBase64: string, mimeType: string): Promise<Ex
   const key = process.env.GEMINI_API_KEY;
   if (!key) return MOCK;
 
-  const url = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL}:generateContent?key=${key}`;
   const body = {
     contents: [{
       parts: [
@@ -68,14 +69,34 @@ export async function extract(imageBase64: string, mimeType: string): Promise<Ex
         { inline_data: { mime_type: mimeType || "image/jpeg", data: imageBase64 } },
       ],
     }],
-    generationConfig: { responseMimeType: "application/json", temperature: 0 },
+    /* No temperature / top_p / top_k: Gemini 3.x rejects the old sampling
+       parameters. responseMimeType still pins the reply to strict JSON. */
+    generationConfig: { responseMimeType: "application/json" },
   };
 
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(body),
-  });
+  const call = (model: string) =>
+    fetch(`https://generativelanguage.googleapis.com/v1beta/models/${model}:generateContent?key=${key}`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
+
+  let res = await call(MODEL);
+
+  /* Google retires model IDs on their own schedule, and the 404 names the
+     replacement. Follow it once rather than failing a demo over a rename. */
+  if (res.status === 404) {
+    const detail = await res.text();
+    const suggested = detail.match(/models\/([a-z0-9.-]+)/gi)
+      ?.map((m) => m.replace("models/", ""))
+      .find((m) => m !== MODEL);
+    const next = suggested ?? FALLBACK_MODELS.find((m) => m !== MODEL);
+    if (!next) throw new Error(`Gemini 404: ${detail.slice(0, 300)}`);
+    console.warn(`  ! Gemini model "${MODEL}" is unavailable — retrying with "${next}".`);
+    console.warn(`    Set GEMINI_MODEL=${next} in .env to silence this.`);
+    res = await call(next);
+  }
+
   if (!res.ok) throw new Error(`Gemini ${res.status}: ${(await res.text()).slice(0, 300)}`);
 
   const json: any = await res.json();
