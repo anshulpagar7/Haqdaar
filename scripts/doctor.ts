@@ -46,7 +46,37 @@ for (const f of ["schemes.json", "attributes.json", "how-to-apply.json", "person
   } catch (e: any) { bad(`data/${f} is not valid JSON — ${e.message}`); }
 }
 
-/* 4 — node_modules */
+/* 4 — the .env file, and whether the keys in it look like keys */
+const ENV = resolve(ROOT, ".env");
+if (!existsSync(ENV)) {
+  const stray = [".env.txt", ".env.env", "env", ".env.local.txt"].find((f) => existsSync(resolve(ROOT, f)));
+  if (stray)
+    bad(`.env is missing, but "${stray}" exists — an editor added an extension`,
+        win ? `Rename-Item ${stray} .env` : `mv ${stray} .env`);
+  else
+    warn(".env not found — the app runs in demo mode",
+         "cp .env.example .env   then paste your keys");
+} else {
+  const raw = readFileSync(ENV, "utf8");
+  const get = (k: string) => {
+    const m = raw.match(new RegExp(`^\\s*${k}\\s*=\\s*(.*)$`, "m"));
+    return m ? m[1].trim() : null;
+  };
+  const check = (k: string, prefix: string, label: string) => {
+    const v = get(k);
+    if (v === null) return warn(`${k} is not in .env — ${label} stays mocked`);
+    if (v === "") return warn(`${k} is empty — ${label} stays mocked`);
+    if (/^["']|["']$/.test(v))
+      return bad(`${k} is wrapped in quotes`, `Write it bare:  ${k}=${prefix}...`);
+    if (!v.startsWith(prefix))
+      return warn(`${k} does not start with "${prefix}" — check you pasted the right key`);
+    ok(`${k} present (${v.slice(0, 6)}…${v.slice(-4)}) — ${label} will run live`);
+  };
+  check("GEMINI_API_KEY", "AIza", "document reading");
+  check("GROQ_API_KEY", "gsk_", "speech-to-text");
+}
+
+/* 5 — node_modules */
 if (existsSync(resolve(ROOT, "node_modules", "vite"))) ok("dependencies installed");
 else bad("node_modules is missing or incomplete", "npm install");
 
@@ -103,4 +133,6 @@ console.log(
     ? `\n  ${failures} blocking problem(s). Fix the FAILs above, then run npm run doctor again.\n`
     : "\n  No blocking problems. Start with: npm run dev\n"
 );
+console.log(`  The app is at  http://localhost:5173`);
+console.log(`  Port ${PORT} is the API — opening it directly shows no interface in dev.\n`);
 process.exit(failures ? 1 : 0);
