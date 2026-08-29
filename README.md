@@ -14,10 +14,21 @@ documents, the official clause that justifies each match, and a filled applicati
 ```bash
 npm install
 cp .env.example .env      # optional — it runs without keys
-npm run dev               # web on :5173, api on :8787
+npm run dev
 ```
 
-Open **http://localhost:5173**.
+Open **http://localhost:5173** — that is the app.
+
+`npm run dev` starts two processes: Vite serves the interface on **:5173**, and the
+API serves data on **:8787**. Opening :8787 in a browser redirects you to :5173,
+because in development that port has no interface of its own.
+
+To run the whole thing on **one** port — useful on a demo laptop, and how it is
+deployed — build first:
+
+```bash
+npm run serve             # build, then serve app + api together on :8787
+```
 
 **It works with zero API keys.** Without them the app runs in *demo mode*: document
 extraction returns a seeded profile and speech returns a fixed answer. Everything
@@ -47,6 +58,12 @@ npm run build                   # typecheck + production bundle
 Run `npm run doctor` first. It checks Node's version, the four data files, the
 native SQLite module, and whether anything is listening on the API port, and it
 prints the exact command that fixes whatever it finds.
+
+**`Cannot GET /`**
+
+That is Express answering on **:8787**, the API port. The app is on
+**http://localhost:5173**. Newer builds redirect you there automatically; if you
+want one port instead of two, run `npm run serve`.
 
 **"Could not load the scheme catalogue" / `http proxy error … ECONNREFUSED`**
 
@@ -215,15 +232,6 @@ be asked about. The benchmark script prints missing attributes.
 
 ---
 
-## Deploying free
-
-- **Frontend** — `npm run build`, push `dist/` to Vercel / Netlify / Cloudflare Pages.
-- **API** — the three handlers in `server/` are plain functions; drop them into
-  `api/` on Vercel or into Supabase Edge Functions. Keep the keys server-side:
-  never call Gemini or Groq from the browser, or a scraped key gets drained before
-  your demo slot.
-
----
 
 ## Demo script (3 minutes)
 
@@ -249,19 +257,51 @@ Record a screen capture of a clean run the night before. Hackathon wifi fails.
 
 ---
 
-## Deploying in one command (for the submission link)
+## Hosting it
+
+Two targets, and the choice comes down to one feature.
+
+### Render — the whole thing, one URL (recommended)
+
+Runs the real Express server, so **everything** works: SQLite, saved applications,
+reference codes, `/api/stats`, the admin layer.
+
+1. Push to GitHub.
+2. [render.com](https://render.com) → **New → Blueprint** → pick the repo. It reads
+   `render.yaml` and fills in the build and start commands.
+3. Add `GEMINI_API_KEY` and `GROQ_API_KEY` under Environment (both optional — without
+   them the site runs in demo mode and says so).
+4. Deploy. You get `https://haqdaar.onrender.com`.
+
+The free plan **sleeps after 15 minutes idle**, and the first request after that takes
+40–60 seconds. Open your link 2 minutes before anyone judges it. If that risk is
+unacceptable, Railway's trial credit has no sleep and takes the same blueprint.
+
+### Vercel — fastest link, one feature short
 
 ```bash
 npm i -g vercel
-vercel            # accept defaults — it detects Vite
-vercel env add GEMINI_API_KEY      # paste your key, choose Production
+vercel                              # it detects Vite
+vercel env add GEMINI_API_KEY       # paste, choose Production
 vercel env add GROQ_API_KEY
 vercel --prod
 ```
 
-`api/health.ts`, `api/data.ts`, `api/extract.ts` and `api/asr.ts` are the same
-handlers as `server/`, wrapped for Vercel. The Express server in `server/` stays
-the local dev path. Without env vars the deployed site still runs in demo mode.
+Instant cold starts and a better URL, but serverless has no persistent disk, so
+there is no SQLite. `api/` wraps only the read endpoints plus the two model calls —
+which means **"Save and get a reference code" will not work**, and the PDF downloads
+without a reference on it. Everything else, including the whole solver, is unaffected.
+
+### Either way
+
+- Never commit `.env`. Set keys in the host's dashboard.
+- `GET /api/health` on the deployed URL tells you what actually booted — storage
+  mode, and whether extraction and speech are live or mocked.
+- On Render, SQLite sits on the ephemeral disk and the catalogue re-seeds itself
+  from `data/*.json` on every boot. A restart costs nothing but saved reference
+  codes, which expire in 30 days anyway. Add a Render disk if you want them kept.
+
+---
 
 ## Sample documents for the demo
 
