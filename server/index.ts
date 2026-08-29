@@ -1,6 +1,10 @@
-import "dotenv/config";
+import { loadEnv } from "./env";
+loadEnv();                       // must run before anything reads process.env
 import express from "express";
 import cors from "cors";
+import { existsSync } from "node:fs";
+import { join, resolve } from "node:path";
+import { ROOT } from "./paths";
 import { extract } from "./extract";
 import { transcribe } from "./asr";
 import { migrate, sweepExpired, db, dbError, storage, DB_FILE } from "./db/index";
@@ -98,12 +102,44 @@ app.post("/api/asr", async (req, res) => {
 
 app.use("/api", (_req, res) => res.status(404).json({ error: "No such endpoint" }));
 
+/* ── serving the app itself ──────────────────────────────────────
+ * Two modes, decided by whether a production build exists:
+ *
+ *   dist/ present  → serve it from this port. One command, one URL,
+ *                    which is what you want on a demo laptop or a VPS.
+ *   dist/ absent   → we are in dev; Vite owns the UI on :5173. Anyone
+ *                    who lands here gets sent there instead of the
+ *                    bare "Cannot GET /" that Express would otherwise
+ *                    return, which explains nothing.                */
+const DIST = resolve(ROOT, "dist");
+const WEB_PORT = Number(process.env.WEB_PORT || 5173);
+const built = existsSync(join(DIST, "index.html"));
+
+if (built) {
+  app.use(express.static(DIST, { index: false, maxAge: "1h" }));
+  app.get("*", (_req, res) => res.sendFile(join(DIST, "index.html")));
+} else {
+  const webUrl = `http://localhost:${WEB_PORT}`;
+  app.get("*", (req, res) => {
+    if (req.headers.accept?.includes("text/html")) return res.redirect(302, webUrl);
+    res.status(404).json({
+      error: `This is the HAQDAAR API. The app runs on ${webUrl}.`,
+      hint: "Run `npm run dev` and open " + webUrl,
+    });
+  });
+}
+
 /* Bind 0.0.0.0 so the port answers on both 127.0.0.1 and ::1. Node's happy-eyeballs
  * resolver tries both for "localhost", and a v4-only bind is the usual cause of
  * AggregateError [ECONNREFUSED] behind a dev proxy on Windows. */
 const server = app.listen(PORT, "0.0.0.0", () => {
   const n = (() => { try { return catalogueCounts().schemes; } catch { return 0; } })();
-  console.log(`\n  haqdaar api    http://127.0.0.1:${PORT}`);
+  /* The app URL first and on its own line: the API port serves no interface in
+   * dev, and printing it at the top sent people to a bare Express 404. */
+  console.log(`\n  ➜  OPEN THE APP AT   ${built
+    ? `http://localhost:${PORT}`
+    : `http://localhost:${WEB_PORT}`}\n`);
+  console.log(`  api            http://127.0.0.1:${PORT}${built ? "" : "   (data only — no UI on this port)"}`);
   console.log(`  storage        ${bootError ? "data/*.json (read-only)" : `${storage} · ${DB_FILE}`} · ${n} schemes`);
   if (bootError) console.log(`  warning        ${bootError}`);
   console.log(`  extraction     ${mock.extract ? "MOCK (no GEMINI_API_KEY)" : "live · Gemini"}`);
