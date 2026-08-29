@@ -1,0 +1,26 @@
+# One-click deploy on Render: New → Blueprint → point at this repo.
+# Serves the built frontend AND the API from a single service and a single URL.
+services:
+  - type: web
+    name: haqdaar
+    runtime: node
+    plan: free
+    # --include=dev is required: Render sets NODE_ENV=production, which would
+    # otherwise skip vite, typescript and tsx — all of which the build needs.
+    buildCommand: npm install --include=dev && npm run build
+    startCommand: npm start
+    healthCheckPath: /api/health
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      # SQLite lives on the ephemeral disk. The catalogue re-seeds itself from
+      # data/*.json on every boot, so a restart costs nothing but saved
+      # reference codes (which expire in 30 days anyway).
+      - key: DATABASE_FILE
+        value: /tmp/haqdaar.db
+      - key: GEMINI_API_KEY
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: ADMIN_KEY
+        sync: false
